@@ -3,8 +3,9 @@ import Login from './component/login/login';
 import Foyer from './component/foyer/foyer';
 import { Route, Routes } from 'react-router-dom';
 import Header from './component/header/header';
+import Room from './component/room/room';
 
-function App({ authService, chatService, messageRepository, roomRepository }) {
+function App({ authService, messageRepository, roomRepository }) {
   return (
     <div>
       <Routes>
@@ -14,11 +15,14 @@ function App({ authService, chatService, messageRepository, roomRepository }) {
           element={
             <Foyer
               authService={authService}
-              chatService={chatService}
               messageRepository={messageRepository}
               roomRepository={roomRepository}
             />
           }
+        />
+        <Route
+          path='/room'
+          element={<Room messageRepository={messageRepository} />}
         />
       </Routes>
     </div>

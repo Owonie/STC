@@ -1,8 +1,8 @@
-import { React, useRef, useState } from 'react';
+import { React, useRef } from 'react';
 import Button from '../button/button';
 import styles from './add_room_form.module.css';
 
-const Add_room_form = ({ userId, onAdd }) => {
+const AddRoomForm = ({ userId, onAdd }) => {
   const roomNameRef = useRef();
   const formRef = useRef();
 
@@ -28,4 +28,4 @@ const Add_room_form = ({ userId, onAdd }) => {
   );
 };
 
-export default Add_room_form;
+export default AddRoomForm;

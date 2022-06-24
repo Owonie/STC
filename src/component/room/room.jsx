@@ -1,16 +1,14 @@
 import React from 'react';
-import Header from '../header/header';
-import Message from '../message/message';
+import Chatbox from '../chatbox/chatbox';
 
-const Room = ({ rooms }) => {
+const Room = ({ messageRepository, roomId }) => {
   return (
     <section>
-      <Header />
-      {Object.keys(rooms).map((key) => (
-        <Message key={key} room={rooms[key]} />
-      ))}
+      <header>이건 채팅방이여</header>
+      <h1>this is room!</h1>
+      <Chatbox messageRepository={messageRepository} roomId={roomId} />
 
-      <Footer />
+      <footer>이건 채팅방 밑이여</footer>
     </section>
   );
 };

@@ -1,17 +1,24 @@
-import { getFirestore, collection, setDoc, doc } from 'firebase/firestore';
-import { db } from './firebase';
+import { collection, addDoc, doc, getFirestore } from 'firebase/firestore';
 
 class MessageRepository {
-  syncMessage(roomName, onUpdate) {
-    const docref = doc(db, `${roomName}`, 'Messages');
-    docref.on('value', (snapshot) => {
-      const value = snapshot.val();
-      value && onUpdate(value);
-    });
-    return () => ReferenceError.off();
+  constructor(app) {
+    this.firestore_db = getFirestore(app);
   }
+  syncMessage(roomName, onUpdate) {}
   saveMessage(roomName, message) {
-    doc(db, `${roomName}`, 'Messages').setDoc(message);
+    try {
+      const docRef = addDoc(
+        collection(this.firestore_db, 'rooms', `${roomName}`, 'Messages'),
+        {
+          name: message.name,
+          content: message.content,
+          time: message.time,
+        }
+      );
+      console.log(message.content, `is sent!`);
+    } catch (e) {
+      console.error(`Error!: `, e);
+    }
   }
 }
 
