@@ -13,6 +13,7 @@ class AuthService {
     this.googleProvider = new GoogleAuthProvider();
     this.githubProvider = new GithubAuthProvider();
   }
+
   login(providerName) {
     const provider = this.getProvider(providerName);
     return signInWithPopup(this.auth, provider);
