@@ -2,14 +2,14 @@ import { React, useRef } from 'react';
 import Button from '../button/button';
 import styles from './join_room_form.module.css';
 
-const JoinRoomForm = ({ joinRoom }) => {
+const JoinRoomForm = ({ userId, joinRoom }) => {
   const formRef = useRef();
   const roomNameRef = useRef();
   const onSubmit = (event) => {
     event.preventDefault();
     console.log(`${roomNameRef.current.value}방에 입장했습니다!`);
+    joinRoom(userId, roomNameRef.current.value);
     formRef.current.reset();
-    joinRoom(roomNameRef);
   };
   return (
     <div>

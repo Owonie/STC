@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import Button from '../button/button';
+import { serverTimestamp } from 'firebase/firestore';
 
-const MessageInput = ({ userId, sendMessage }) => {
+const MessageInput = ({ userId, sendMessage, roomId }) => {
   const messageRef = useRef();
   const formRef = useRef();
   const onSubmit = (event) => {
@@ -9,10 +10,10 @@ const MessageInput = ({ userId, sendMessage }) => {
     const message = {
       userId: userId,
       content: messageRef.current.value,
+      time: serverTimestamp(),
     };
-    console.log(`${messageRef.current.value}`);
+    sendMessage(message, roomId);
     formRef.current.reset();
-    sendMessage(message);
   };
 
   return (

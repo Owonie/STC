@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import Message from '../message/message';
 import MessageInput from '../message_input/message_input';
 import styles from './chatbox.module.css';
-const Chatbox = ({ messageRepository, roomId }) => {
+const Chatbox = ({ messageRepository, roomId, userId }) => {
   const [messages, setMessages] = useState({});
-  const sendMessage = (message) => {
+  const sendMessage = (message, roomId) => {
     setMessages((messages) => {
       const updated = { ...messages };
       updated[message.id] = message;
       return updated;
     });
-    messageRepository.saveMessage(roomId, message);
+    messageRepository.saveMessage(message, roomId);
   };
   return (
     <section className={styles.chatbox}>
@@ -20,7 +20,7 @@ const Chatbox = ({ messageRepository, roomId }) => {
           <Message key={key} message={messages[key]} />
         ))}
       </ul>
-      <MessageInput sendMessage={sendMessage} />
+      <MessageInput userId={userId} roomId={roomId} sendMessage={sendMessage} />
     </section>
   );
 };

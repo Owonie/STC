@@ -1,13 +1,5 @@
-import {
-  getDatabase,
-  ref,
-  set,
-  remove,
-  onValue,
-  off,
-  query,
-} from 'firebase/database';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+import { getDatabase, ref, set, remove, onValue, off } from 'firebase/database';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
 class RoomRepository {
   constructor(app) {
@@ -24,25 +16,14 @@ class RoomRepository {
   }
   saveRoom(userId, room) {
     set(ref(this.realtime_db, `rooms/${room.roomId}`), userId); // Realtime database Dir
-    try {
-      const docRef = addDoc(collection(this.firestore_db, 'rooms'), {
-        userId: room.userId,
-        roomId: room.roomId,
-      });
-      console.log(room.roomId, `is created!`);
-    } catch (e) {
-      console.error(`Error!: `, e);
-    }
+    setDoc(doc(this.firestore_db, 'rooms', `${room.roomId}`), {
+      userId: userId,
+      roomId: room.roomId,
+    });
   }
 
   removeRoom(userId, room) {
     remove(ref(this.realtime_db, `rooms/${userId}`), room);
-  }
-  getRoom(roomId) {
-    const querySnapshot = getDocs(
-      collection(this.firestore_db, 'rooms', `${roomId}`)
-    );
-    return querySnapshot;
   }
 }
 

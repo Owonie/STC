@@ -1,24 +1,28 @@
-import { collection, addDoc, doc, getFirestore } from 'firebase/firestore';
+import {
+  addDoc,
+  doc,
+  getFirestore,
+  setDoc,
+  collection,
+} from 'firebase/firestore';
 
 class MessageRepository {
   constructor(app) {
     this.firestore_db = getFirestore(app);
   }
-  syncMessage(roomName, onUpdate) {}
-  saveMessage(roomName, message) {
-    try {
-      const docRef = addDoc(
-        collection(this.firestore_db, 'rooms', `${roomName}`, 'Messages'),
-        {
-          name: message.name,
-          content: message.content,
-          time: message.time,
-        }
-      );
-      console.log(message.content, `is sent!`);
-    } catch (e) {
-      console.error(`Error!: `, e);
-    }
+  syncMessage(roomId, onUpdate) {}
+  initMessage(room) {
+    setDoc(doc(this.firestore_db, `rooms/${room.roomId}/messages`, 'init'), {
+      content: 'init completed!',
+    });
+  }
+  saveMessage(message, roomId) {
+    addDoc(collection(this.firestore_db, `rooms/${roomId}/messages`), {
+      userId: message.userId,
+      content: message.content,
+      time: message.time,
+    });
+    console.log('메세지 내용: ', message.content);
   }
 }
 

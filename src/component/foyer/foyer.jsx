@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import Header from '../header/header';
-import Room from '../room/room';
 import Rooms from '../rooms/rooms';
 
 const Foyer = ({ authService, messageRepository, roomRepository }) => {
@@ -28,8 +27,11 @@ const Foyer = ({ authService, messageRepository, roomRepository }) => {
     <div>
       <Header onLogout={onLogout} />
       <h1>this is foyer!</h1>
-      <Room messageRepository={messageRepository} />
-      <Rooms userId={userId} roomRepository={roomRepository} />
+      <Rooms
+        userId={userId}
+        roomRepository={roomRepository}
+        messageRepository={messageRepository}
+      />
     </div>
   );
 };
