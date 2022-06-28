@@ -3,15 +3,15 @@ import Button from '../button/button';
 import styles from './add_room_form.module.css';
 
 const AddRoomForm = ({ onAdd }) => {
-  const roomNameRef = useRef();
+  const roomIdRef = useRef();
   const formRef = useRef();
 
   const onSubmit = (event) => {
     event.preventDefault();
     const room = {
-      roomId: roomNameRef.current.value,
+      roomId: roomIdRef.current.value,
     };
-    console.log(`${roomNameRef.current.value}이(가) 만들어졌습니다!`);
+    console.log('방을 만들고 있습니당!');
     formRef.current.reset();
     onAdd(room);
   };
@@ -20,7 +20,7 @@ const AddRoomForm = ({ onAdd }) => {
     <div>
       <h1>this is rooms!</h1>
       <form ref={formRef} className={styles.form}>
-        <input ref={roomNameRef} type='text' />
+        <input ref={roomIdRef} type='text' />
       </form>
       <Button name='create' onClick={onSubmit} />
     </div>

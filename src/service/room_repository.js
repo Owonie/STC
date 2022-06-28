@@ -10,12 +10,12 @@ class RoomRepository {
       (docSnap) => {
         if (docSnap.exists()) {
           console.log('이미 있는 방입니다!');
-          console.log(`${docSnap.exists()}`);
         } else {
           setDoc(doc(this.firestore_db, 'rooms', `${room.roomId}`), {
             userId: userId,
             roomId: room.roomId,
           });
+          console.log(`${room.roomId}이(가) 만들어졌습니다!`);
         }
       }
     );
