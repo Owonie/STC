@@ -1,13 +1,16 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Chatbox from '../chatbox/chatbox';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../button/button';
 
 const Room = ({ messageRepository }) => {
-  const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
   const navigateState = useLocation().state;
+  const [messages, setMessages] = useState({});
+  const [onchat, setOnchat] = useState(true);
+
   const quitRoom = () => {
+    setOnchat(false);
     navigate('/foyer', {
       replace: true,
     });
@@ -17,9 +20,19 @@ const Room = ({ messageRepository }) => {
   const sendMessage = (message, roomId) => {
     messageRepository.saveMessage(message, roomId);
   };
+
   useEffect(() => {
-    messageRepository.syncMessage(navigateState.roomId);
-  }, [messageRepository]);
+    if (onchat == false) {
+      return;
+    }
+    const stopSync = messageRepository.syncMessage(
+      navigateState.roomId,
+      (docs) => {
+        setMessages(docs);
+      }
+    );
+    return () => stopSync();
+  }, [onchat, messageRepository]);
 
   return (
     <section>
@@ -30,7 +43,9 @@ const Room = ({ messageRepository }) => {
         roomId={navigateState.roomId}
         userId={navigateState.userId}
         sendMessage={sendMessage}
+        messages={messages}
       />
+      <h1>이건메세지</h1>
       <footer>이건 채팅방 밑이여</footer>
     </section>
   );

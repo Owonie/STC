@@ -8,26 +8,26 @@ import {
   query,
   orderBy,
   serverTimestamp,
+  limit,
 } from 'firebase/firestore';
 
 class MessageRepository {
   constructor(app) {
     this.firestore_db = getFirestore(app);
   }
-  syncMessage(roomId) {
-    const q = query(
-      collection(this.firestore_db, `rooms/${roomId}/messages`),
-      orderBy('time', 'desc')
-    );
-    onSnapshot(q, { includeMetadataChanges: true }, (docs) => {
-      const messages = [];
-      docs.docChanges().forEach((change) => {
-        if (change.type === 'added') {
-          messages.push(change.doc.data().content);
-        }
-      });
-      console.log(messages);
+  syncMessage(roomId, onUpdate) {
+    const ref = collection(this.firestore_db, `rooms/${roomId}/messages`);
+    const q = query(ref, orderBy('time', 'asc'), limit(30)); // 메세지는 최대 30개만 표시한다.
+    const unsub = onSnapshot(q, (snapshot) => {
+      const data = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        content: doc.data().content,
+        time: doc.data().time,
+        userId: doc.data().userId,
+      }));
+      data && onUpdate(data);
     });
+    return () => unsub();
   }
   initMessage(room) {
     setDoc(doc(this.firestore_db, `rooms/${room.roomId}/messages`, 'init'), {

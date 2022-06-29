@@ -4,7 +4,6 @@ class RoomRepository {
   constructor(app) {
     this.firestore_db = getFirestore(app);
   }
-  syncRooms() {}
   saveRoom(userId, room) {
     getDoc(doc(this.firestore_db, 'rooms', `${room.roomId}`)).then(
       (docSnap) => {

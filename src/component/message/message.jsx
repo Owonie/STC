@@ -2,14 +2,16 @@ import React from 'react';
 import styles from './message.module.css';
 
 const Message = ({ message }) => {
-  const { name, content, time } = message;
-  <li className={styles.message}>
-    <div className={styles.content}>
-      <h1 className={styles.name}>{name}</h1>
-      <p className={styles.content}>{content}</p>
-      <h1 className={styles.time}>{time}</h1>
-    </div>
-  </li>;
+  const { content, userId } = message;
+
+  return (
+    <li className={styles.messages}>
+      <div className={styles.message}>
+        <h1 className={styles.userId}>{userId}</h1>
+        <p className={styles.content}>{content}</p>
+      </div>
+    </li>
+  );
 };
 
 export default Message;
