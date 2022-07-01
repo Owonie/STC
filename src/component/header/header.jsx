@@ -3,13 +3,16 @@ import styles from './header.module.css';
 
 const Header = ({ onLogout }) => {
   return (
-    <header className={styles.header}>
-      {onLogout && (
-        <button className={styles.logout} onClick={onLogout}>
-          Logout
-        </button>
-      )}
-    </header>
+    <div className={styles.header}>
+      <h1>this is header!</h1>
+      <header className={styles.container}>
+        {onLogout && (
+          <button className={styles.logout} onClick={onLogout}>
+            Logout
+          </button>
+        )}
+      </header>
+    </div>
   );
 };
 export default Header;

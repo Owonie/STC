@@ -6,12 +6,18 @@ const Chatbox = ({ roomId, userId, sendMessage, messages }) => {
   return (
     <section className={styles.chatbox}>
       <h1 className={styles.title}>Chatbox!</h1>
-      <ul className={styles.messages}>
-        {Object.keys(messages).map((key) => (
-          <Message key={key} message={messages[key]} />
-        ))}
-      </ul>
-      <MessageInput userId={userId} roomId={roomId} sendMessage={sendMessage} />
+      <div className={styles.container}>
+        <ul className={styles.messages}>
+          {Object.keys(messages).map((key) => (
+            <Message key={key} message={messages[key]} />
+          ))}
+        </ul>
+        <MessageInput
+          userId={userId}
+          roomId={roomId}
+          sendMessage={sendMessage}
+        />
+      </div>
     </section>
   );
 };

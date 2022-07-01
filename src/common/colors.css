@@ -1,0 +1,8 @@
+@value STC_Black: #393232;
+@value STC_White: #F2F2F2;
+@value STC_Grey: #4D4545;
+@value STC_DarkPeach: #8D6262;
+@value STC_LightPeach: #EBD5D5;
+@value STC_Peach: #EA8A8A;
+@value STC_PeachShadow: #685454;
+@value STC_Colorful: linear-gradient(166deg, rgba(237, 193, 211, 1) 0%,rgba(212, 149, 161, 1) 60%, rgba(162, 63, 63, 1) 100%, rgba(127, 188, 242, 1) 100%);

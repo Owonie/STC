@@ -1,0 +1,38 @@
+@value STC_Black,STC_White from '../../common/colors.css';
+
+.sidebar {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lists {
+  padding: 0 0;
+  margin: 0 0;
+  height: 70%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+.list {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: STC_Black;
+  color: STC_White;
+}
+.button {
+  height: 70%;
+  width: 70%;
+  color: STC_White;
+  background-color: STC_Black;
+  font-size: 3em;
+  border: none;
+}
+.button:hover {
+  cursor: pointer;
+}

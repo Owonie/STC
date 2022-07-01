@@ -8,6 +8,7 @@ import AuthService from './service/auth_service';
 import { firebaseApp, db } from './service/firebase';
 import MessageRepository from './service/message_repository';
 import RoomRepository from './service/room_repository';
+import '@fortawesome/fontawesome-free/js/all.js';
 
 const authService = new AuthService(firebaseApp);
 const messageRepository = new MessageRepository(firebaseApp);

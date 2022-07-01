@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Chatbox from '../chatbox/chatbox';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../button/button';
+import styles from './room.module.css';
 
 const Room = ({ messageRepository }) => {
   const navigate = useNavigate();
@@ -35,17 +36,18 @@ const Room = ({ messageRepository }) => {
   }, [onchat, messageRepository]);
 
   return (
-    <section>
+    <section className={styles.room}>
       <header>{navigateState.roomId}</header>
       <Button name='Quit' onClick={quitRoom} />
-      <Chatbox
-        messageRepository={messageRepository}
-        roomId={navigateState.roomId}
-        userId={navigateState.userId}
-        sendMessage={sendMessage}
-        messages={messages}
-      />
-      <h1>이건메세지</h1>
+      <div className={styles.container}>
+        <Chatbox
+          messageRepository={messageRepository}
+          roomId={navigateState.roomId}
+          userId={navigateState.userId}
+          sendMessage={sendMessage}
+          messages={messages}
+        />
+      </div>
       <footer>이건 채팅방 밑이여</footer>
     </section>
   );
