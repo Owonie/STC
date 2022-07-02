@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import Button from '../button/button';
 import { serverTimestamp } from 'firebase/firestore';
+import styles from './message_input.module.css';
 
 const MessageInput = ({ userId, sendMessage, roomId }) => {
   const messageRef = useRef();
@@ -17,11 +17,13 @@ const MessageInput = ({ userId, sendMessage, roomId }) => {
   };
 
   return (
-    <div>
-      <form ref={formRef} action=''>
-        <input ref={messageRef} type='text' />
+    <div className={styles.inputMessage}>
+      <form className={styles.inputForm} ref={formRef} action=''>
+        <input className={styles.input} ref={messageRef} type='text' />
       </form>
-      <Button name='send' onClick={onSubmit} />
+      <button className={styles.button} onClick={onSubmit}>
+        <i className='fa-solid fa-paper-plane fa-2x'></i>
+      </button>
     </div>
   );
 };

@@ -9,7 +9,6 @@ import Header from './component/header/header';
 function App({ authService, messageRepository, roomRepository }) {
   return (
     <section className={styles.app}>
-      <Header />
       <div className={styles.container}>
         <div className={styles.sidebar}>
           <Sidebar />

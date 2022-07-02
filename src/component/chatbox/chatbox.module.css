@@ -1,17 +1,35 @@
+@value STC_Grey from '../../common/colors.css';
+
 .chatbox {
+  width: 100%;
+  height: 100%;
   flex-basis: 50%;
   overflow-y: auto;
+  border-radius: 2em;
+  background-color: STC_Grey;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  z-index: 2;
 }
-
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-items: center;
+  align-content: center;
+}
 .title {
   width: 100%;
   text-align: center;
+  justify-content: center;
   margin-bottom: 1em;
 }
 
 .messages {
   width: 100%;
-  height: 100%;
+  height: 75%;
   padding: 0.5em 2em;
   display: flex;
   flex-direction: column;

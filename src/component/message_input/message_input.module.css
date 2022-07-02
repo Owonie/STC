@@ -1,0 +1,35 @@
+@value STC_White,STC_DarkPeach, STC_Black,STC_Grey, STC_Peach from '../../common/colors.css';
+
+.inputMessage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.inputForm {
+  height: 7em;
+  width: 75%;
+}
+.input {
+  width: 85%;
+  height: 100%;
+  border-radius: 1.5rem;
+  border-color: STC_DarkPeach;
+  background-color: STC_Black;
+  color: STC_White;
+}
+.input:focus {
+  border-color: STC_White;
+}
+
+.button {
+  background-color: STC_Grey;
+  color: STC_Peach;
+  margin-top: 0.5em;
+  height: 3em;
+  border: none;
+}
+.button:hover {
+  cursor: pointer;
+}
