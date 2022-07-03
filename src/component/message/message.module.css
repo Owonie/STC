@@ -1,0 +1,52 @@
+@value STC_White,STC_DarkPeach,STC_PoliceBlue, STC_PeachShadow,STC_Black,STC_Grey, STC_Peach from '../../common/colors.css';
+
+.messages {
+  width: 100%;
+  display: flex;
+  margin: 1em 0;
+}
+.myMessages {
+  width: 100%;
+  display: flex;
+  margin: 1em 0;
+  flex-direction: row-reverse;
+}
+.message {
+  margin: 0 1em;
+  padding: 0 0.5em;
+  display: flex;
+  flex-direction: column;
+}
+.avatar {
+  width: 3em;
+  height: 3em;
+  border-radius: 0.8em;
+}
+.userId {
+  margin: 0 0;
+  margin-right: auto;
+  font-size: 10px;
+}
+.myUserId {
+  margin: 0 0;
+  margin-left: auto;
+  font-size: 10px;
+}
+.content {
+  padding: 0.6em 0.8em;
+  border-radius: 0.3em;
+  background-color: STC_PoliceBlue;
+  margin-right: auto;
+  margin-top: 0.5em;
+  display: inline-block;
+  min-height: 2em;
+}
+.myContent {
+  padding: 0.6em 0.8em;
+  border-radius: 0.3em;
+  background-color: STC_Peach;
+  margin-left: auto;
+  margin-top: 0.5em;
+  display: inline-block;
+  min-height: 2em;
+}

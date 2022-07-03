@@ -1,4 +1,4 @@
-@value STC_Black,STC_White from '../../common/colors.css';
+@value STC_Black,STC_MaastrichtBlue,STC_White from '../../common/colors.css';
 
 .sidebar {
   height: 100%;
@@ -22,14 +22,15 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: STC_Black;
+  background-color: STC_MaastrichtBlue;
   color: STC_White;
 }
 .button {
   height: 70%;
   width: 70%;
   color: STC_White;
-  background-color: STC_Black;
+  opacity: 78%;
+  background-color: STC_MaastrichtBlue;
   font-size: 3em;
   border: none;
 }

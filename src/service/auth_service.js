@@ -10,6 +10,7 @@ import {
 class AuthService {
   constructor() {
     this.auth = getAuth();
+    this.user = this.auth.currentUser;
     this.googleProvider = new GoogleAuthProvider();
     this.githubProvider = new GithubAuthProvider();
   }

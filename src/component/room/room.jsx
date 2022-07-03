@@ -19,8 +19,8 @@ const Room = ({ messageRepository }) => {
     console.log('방에서 퇴장했습니다!');
   };
 
-  const sendMessage = (message, roomId) => {
-    messageRepository.saveMessage(message, roomId);
+  const sendMessage = (message) => {
+    messageRepository.saveMessage(message);
   };
 
   useEffect(() => {
@@ -49,6 +49,8 @@ const Room = ({ messageRepository }) => {
             messageRepository={messageRepository}
             roomId={navigateState.roomId}
             userId={navigateState.userId}
+            photoURL={navigateState.photoURL}
+            displayName={navigateState.displayName}
             sendMessage={sendMessage}
             messages={messages}
           />

@@ -8,11 +8,16 @@ const Login = ({ authService }) => {
   const onLogin = (event) => {
     authService //
       .login(event.currentTarget.textContent)
-      .then((data) => goToFoyer(data.user.uid));
+      .then((data) =>
+        goToFoyer(data.user.uid, data.user.displayName, data.user.photoURL)
+      );
   };
 
-  const goToFoyer = (userId) => {
-    navigate(`/foyer`, { replace: true, state: { id: userId } });
+  const goToFoyer = (userId, displayName, photoURL) => {
+    navigate(`/foyer`, {
+      replace: true,
+      state: { id: userId, displayName: displayName, photoURL: photoURL },
+    });
   };
 
   useEffect(() => {

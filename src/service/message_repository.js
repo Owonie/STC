@@ -8,7 +8,6 @@ import {
   query,
   orderBy,
   serverTimestamp,
-  limit,
 } from 'firebase/firestore';
 
 class MessageRepository {
@@ -17,7 +16,7 @@ class MessageRepository {
   }
   syncMessage(roomId, onUpdate) {
     const ref = collection(this.firestore_db, `rooms/${roomId}/messages`);
-    const q = query(ref, orderBy('time', 'asc'), limit(30)); // 메세지는 최대 30개만 표시한다.
+    const q = query(ref, orderBy('time', 'asc')); // 메세지는 최대 30개만 표시한다.
     const unsub = onSnapshot(q, (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
         ...doc.data(),
@@ -34,9 +33,10 @@ class MessageRepository {
       content: 'init completed!',
     });
   }
-  saveMessage(message, roomId) {
-    addDoc(collection(this.firestore_db, `rooms/${roomId}/messages`), {
+  saveMessage(message) {
+    addDoc(collection(this.firestore_db, `rooms/${message.roomId}/messages`), {
       userId: message.userId,
+      displayName: message.displayName,
       content: message.content,
       time: serverTimestamp(),
     });
