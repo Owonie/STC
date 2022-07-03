@@ -38,6 +38,7 @@ class MessageRepository {
       userId: message.userId,
       displayName: message.displayName,
       content: message.content,
+      photoURL: message.photoURL,
       time: serverTimestamp(),
     });
   }

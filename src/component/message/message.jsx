@@ -3,14 +3,13 @@ import styles from './message.module.css';
 
 const DEFAULT_IMAGE = '/images/default_logo.png';
 
-const Message = ({ message, userName, photoURL }) => {
-  const { content, userId, displayName } = message;
-  const url = photoURL || DEFAULT_IMAGE;
+const Message = ({ message, userName }) => {
+  const { content, userId, displayName, photoURL } = message;
   return (
     <li className={userId == userName ? styles.myMessages : styles.messages}>
       <img
         className={styles.avatar}
-        src={url}
+        src={photoURL}
         alt='profile photo'
         referrerPolicy='no-referrer'
       />

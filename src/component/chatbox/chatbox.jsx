@@ -16,13 +16,7 @@ const Chatbox = ({
         <div className={styles.userlist}>userList</div>
         <ul className={styles.messages}>
           {Object.keys(messages).map((key) => (
-            <Message
-              key={key}
-              message={messages[key]}
-              userName={userId}
-              displayName={displayName}
-              photoURL={photoURL}
-            />
+            <Message key={key} message={messages[key]} userName={userId} />
           ))}
         </ul>
         <div className={styles.messageInput}>
@@ -30,6 +24,7 @@ const Chatbox = ({
             userId={userId}
             roomId={roomId}
             displayName={displayName}
+            photoURL={photoURL}
             sendMessage={sendMessage}
           />
         </div>

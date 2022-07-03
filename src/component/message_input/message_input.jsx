@@ -2,7 +2,13 @@ import React, { useRef } from 'react';
 import { serverTimestamp } from 'firebase/firestore';
 import styles from './message_input.module.css';
 
-const MessageInput = ({ userId, displayName, sendMessage, roomId }) => {
+const MessageInput = ({
+  userId,
+  displayName,
+  sendMessage,
+  roomId,
+  photoURL,
+}) => {
   const messageRef = useRef();
   const formRef = useRef();
   const onSubmit = (event) => {
@@ -13,6 +19,7 @@ const MessageInput = ({ userId, displayName, sendMessage, roomId }) => {
       content: messageRef.current.value,
       time: serverTimestamp(),
       displayName: displayName,
+      photoURL: photoURL,
     };
     sendMessage(message);
     formRef.current.reset();
