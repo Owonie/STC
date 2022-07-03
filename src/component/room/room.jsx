@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Chatbox from '../chatbox/chatbox';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../button/button';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import Message from '../message/message';
 import MessageInput from '../message_input/message_input';
 import styles from './chatbox.module.css';
@@ -10,11 +10,15 @@ const Chatbox = ({
   sendMessage,
   messages,
 }) => {
+  const scrollRef = useRef();
+  useEffect(() => {
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+  }, [messages]);
   return (
     <section className={styles.chatbox}>
       <div className={styles.container}>
         <div className={styles.userlist}>userList</div>
-        <ul className={styles.messages}>
+        <ul className={styles.messages} ref={scrollRef}>
           {Object.keys(messages).map((key) => (
             <Message key={key} message={messages[key]} userName={userId} />
           ))}

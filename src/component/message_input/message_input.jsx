@@ -8,6 +8,7 @@ const MessageInput = ({
   sendMessage,
   roomId,
   photoURL,
+  scrollRef,
 }) => {
   const messageRef = useRef();
   const formRef = useRef();
@@ -21,7 +22,7 @@ const MessageInput = ({
       displayName: displayName,
       photoURL: photoURL,
     };
-    sendMessage(message);
+    sendMessage(message, scrollRef);
     formRef.current.reset();
   };
   const onKeyPress = (event) => {
