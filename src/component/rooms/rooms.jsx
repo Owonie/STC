@@ -13,8 +13,8 @@ const Rooms = ({
 }) => {
   const navigate = useNavigate();
   const addRoom = (room) => {
-    roomRepository.saveRoom(userId, room); // create new room
-    messageRepository.initMessage(room); // create new message storage
+    roomRepository.saveRoom(userId, room);
+    messageRepository.initMessage(room);
   };
   const joinRoom = (userId, roomId, displayName, photoURL) => {
     goToRoom(userId, roomId, displayName, photoURL);

@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './message.module.css';
 
-const DEFAULT_IMAGE = '/images/default_logo.png';
-
 const Message = ({ message, userName }) => {
   const { content, userId, displayName, photoURL } = message;
   return (

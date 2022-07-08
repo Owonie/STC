@@ -1,0 +1,56 @@
+.header {
+  display: flex;
+  height: 4rem;
+  padding: 0.8em 5em;
+  background: black;
+  color: white;
+}
+
+.title {
+  border-radius: 1rem;
+  font-size: 2.5rem;
+  font-family: "Times New Roman", Times, serif;
+  background: rgb(255, 255, 255);
+  color: black;
+  cursor: pointer;
+  transition: transform 160ms ease-in;
+}
+
+.title:hover {
+  transform: scale(1.2);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+}
+
+.img {
+  width: 200px;
+  height: auto;
+}
+
+.input {
+  flex-basis: 100%;
+  font-size: 1.2rem;
+  margin: 0em 2em;
+  outline: 0;
+  margin-right: 2em;
+}
+
+.button {
+  background-color: rgb(169, 94, 169);
+  width: 10%;
+  cursor: pointer;
+  transition: transform 160ms ease-in;
+}
+
+.button:hover {
+  transform: scale(1.2);
+}
+
+.buttonimg {
+  height: 100%;
+  padding: 0.5em 0.2em;
+}

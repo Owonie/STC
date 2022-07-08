@@ -5,8 +5,9 @@ import { Route, Routes } from 'react-router-dom';
 import Room from './component/room/room';
 import Sidebar from './component/sidebar/sidebar';
 import Header from './component/header/header';
+import Music from './component/recordshop/music';
 
-function App({ authService, messageRepository, roomRepository }) {
+function App({ authService, musicService, messageRepository, roomRepository }) {
   return (
     <section className={styles.app}>
       <div className={styles.container}>
@@ -29,6 +30,10 @@ function App({ authService, messageRepository, roomRepository }) {
             <Route
               path='/room'
               element={<Room messageRepository={messageRepository} />}
+            />
+            <Route
+              path='/music'
+              element={<Music musicService={musicService} />}
             />
           </Routes>
         </div>
