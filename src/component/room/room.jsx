@@ -4,8 +4,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../button/button';
 import styles from './room.module.css';
 import Header from '../header/header';
+import { useSelector } from 'react-redux';
 
 const Room = ({ messageRepository }) => {
+  const roomId = useSelector((state) => state.userData.roomId);
   const navigate = useNavigate();
   const navigateState = useLocation().state;
   const [messages, setMessages] = useState({});
@@ -27,12 +29,9 @@ const Room = ({ messageRepository }) => {
     if (onchat == false) {
       return;
     }
-    const stopSync = messageRepository.syncMessage(
-      navigateState.roomId,
-      (docs) => {
-        setMessages(docs);
-      }
-    );
+    const stopSync = messageRepository.syncMessage(roomId, (docs) => {
+      setMessages(docs);
+    });
     return () => stopSync();
   }, [onchat, messageRepository]);
 
@@ -47,10 +46,6 @@ const Room = ({ messageRepository }) => {
         <div className={styles.chatbox}>
           <Chatbox
             messageRepository={messageRepository}
-            roomId={navigateState.roomId}
-            userId={navigateState.userId}
-            photoURL={navigateState.photoURL}
-            displayName={navigateState.displayName}
             sendMessage={sendMessage}
             messages={messages}
           />

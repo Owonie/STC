@@ -2,14 +2,14 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import Message from '../message/message';
 import MessageInput from '../message_input/message_input';
 import styles from './chatbox.module.css';
-const Chatbox = ({
-  roomId,
-  userId,
-  displayName,
-  photoURL,
-  sendMessage,
-  messages,
-}) => {
+import { useSelector } from 'react-redux';
+
+const Chatbox = ({ sendMessage, messages }) => {
+  const userId = useSelector((state) => state.userData.userId);
+  const displayName = useSelector((state) => state.userData.displayName);
+  const roomId = useSelector((state) => state.userData.roomId);
+  const photoURL = useSelector((state) => state.userData.photoURL);
+
   const scrollRef = useRef();
   useEffect(() => {
     scrollRef.current.scrollTop = scrollRef.current.scrollHeight;

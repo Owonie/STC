@@ -26,8 +26,8 @@
   color: STC_White;
 }
 .button {
-  height: 70%;
-  width: 70%;
+  height: 80%;
+  width: 80%;
   color: STC_White;
   opacity: 78%;
   background-color: STC_MaastrichtBlue;
@@ -36,4 +36,8 @@
 }
 .button:hover {
   cursor: pointer;
+}
+button path,
+button svg {
+  pointer-events: none;
 }

@@ -2,8 +2,15 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer/footer';
 import Header from '../header/header';
+import { useDispatch } from 'react-redux';
+import {
+  updateDisplayName,
+  updateUserId,
+  updatePhotoURL,
+} from '../../reducers/userData';
 
 const Login = ({ authService }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const onLogin = (event) => {
     authService //
@@ -14,10 +21,10 @@ const Login = ({ authService }) => {
   };
 
   const goToFoyer = (userId, displayName, photoURL) => {
-    navigate(`/foyer`, {
-      replace: true,
-      state: { id: userId, displayName: displayName, photoURL: photoURL },
-    });
+    dispatch(updateUserId(userId));
+    dispatch(updateDisplayName(displayName));
+    dispatch(updatePhotoURL(photoURL));
+    navigate(`/foyer`);
   };
 
   useEffect(() => {

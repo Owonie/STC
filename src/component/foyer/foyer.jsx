@@ -1,20 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-
+import React, { useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 import Rooms from '../rooms/rooms';
+import { useDispatch } from 'react-redux';
+import {
+  updateDisplayName,
+  updateUserId,
+  updatePhotoURL,
+} from '../../reducers/userData';
 
 const Foyer = ({ authService, messageRepository, roomRepository }) => {
   const navigate = useNavigate();
-  const navigateState = useLocation().state;
-  const [userId, setUserId] = useState(navigateState && navigateState.id);
-  const [displayName, setDisplayname] = useState(
-    navigateState && navigateState.displayName
-  );
-  const [photoURL, setphotoURL] = useState(
-    navigateState && navigateState.photoURL
-  );
-
+  const dispatch = useDispatch();
   const onLogout = useCallback(() => {
     authService.logout();
   }, [authService]);
@@ -22,9 +19,9 @@ const Foyer = ({ authService, messageRepository, roomRepository }) => {
   useEffect(() => {
     authService.onAuthChange((user) => {
       if (user) {
-        setUserId(user.uid);
-        setDisplayname(user.displayName);
-        setphotoURL(user.photoURL);
+        dispatch(updateUserId(user.uid));
+        dispatch(updateDisplayName(user.displayName));
+        dispatch(updatePhotoURL(user.photoURL));
       } else {
         navigate('/');
       }
@@ -36,9 +33,6 @@ const Foyer = ({ authService, messageRepository, roomRepository }) => {
       <Header onLogout={onLogout} />
       <h1>this is foyer!</h1>
       <Rooms
-        userId={userId}
-        displayName={displayName}
-        photoURL={photoURL}
         authService={authService}
         roomRepository={roomRepository}
         messageRepository={messageRepository}
