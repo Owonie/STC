@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './sidebar.module.css';
 
@@ -35,8 +35,8 @@ const Sidebar = (props) => {
         </li>
         <li className={styles.list}>
           <button
-            className={`${styles.button} ${styles.btn_music}`}
-            value='music'
+            className={`${styles.button} ${styles.btn_video}`}
+            value='video'
             onClick={onClick}
           >
             <i className='fa-solid fa-compact-disc'></i>

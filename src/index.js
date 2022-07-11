@@ -8,13 +8,13 @@ import AuthService from './service/auth_service';
 import { firebaseApp, db } from './service/firebase';
 import MessageRepository from './service/message_repository';
 import RoomRepository from './service/room_repository';
-import MusicService from './service/music_service';
+import VideoService from './service/video_service';
 import '@fortawesome/fontawesome-free/js/all.js';
 import store from './store';
 import { Provider } from 'react-redux';
 
 const authService = new AuthService(firebaseApp);
-const musicService = new MusicService(process.env.REACT_APP_YOUTUBE_API_KEY);
+const videoService = new VideoService(process.env.REACT_APP_YOUTUBE_API_KEY);
 const messageRepository = new MessageRepository(firebaseApp);
 const roomRepository = new RoomRepository();
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,7 +24,7 @@ root.render(
     <Provider store={store}>
       <App
         authService={authService}
-        musicService={musicService}
+        videoService={videoService}
         messageRepository={messageRepository}
         roomRepository={roomRepository}
       />

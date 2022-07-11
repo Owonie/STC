@@ -1,37 +1,43 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import styles from './music.module.css';
+import styles from './video.module.css';
 import SearchHeader from '../search_header/search_header';
 import VideoList from '../video_list/video_list';
 import VideoDetail from '../video_detail/video_detail';
+import { useDispatch } from 'react-redux';
+import { addVideo } from '../../reducers/videoList';
 
-function Music({ musicService }) {
+function Video({ videoService }) {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const dispatch = useDispatch();
 
   const selectVideo = (video) => {
     window.scrollTo({ top: 0, behavior: 'auto' });
     setSelectedVideo(video);
   };
+  const addSelectedVideo = (video) => {
+    dispatch(addVideo(video));
+  };
   const search = useCallback(
     (query) => {
       window.scrollTo({ top: 0, behavior: 'auto' });
       setSelectedVideo(null);
-      musicService
+      videoService
         .search(query) //
         .then((videos) => setVideos(videos));
     },
-    [musicService]
-  ); // mount 됐을때만 호출이 된다.
+    [videoService]
+  );
 
   useEffect(() => {
-    musicService
+    videoService
       .mostPopular() //
       .then((videos) => setVideos(videos));
-  }, [musicService]);
+  }, [videoService]);
 
   const homepage = useCallback(() => {
     setSelectedVideo(null);
-    musicService
+    videoService
       .mostPopular() //
       .then((result) =>
         result.items.map((item) => ({ ...item, id: item.id.videoId }))
@@ -51,6 +57,7 @@ function Music({ musicService }) {
           <VideoList
             videos={videos}
             onVideoClick={selectVideo}
+            addSelectedVideo={addSelectedVideo}
             display={selectedVideo ? 'list' : 'grid'}
           />
         </div>
@@ -59,4 +66,4 @@ function Music({ musicService }) {
   );
 }
 
-export default Music;
+export default Video;

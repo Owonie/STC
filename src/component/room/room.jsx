@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 const Room = ({ messageRepository }) => {
   const roomId = useSelector((state) => state.userData.roomId);
   const navigate = useNavigate();
-  const navigateState = useLocation().state;
   const [messages, setMessages] = useState({});
   const [onchat, setOnchat] = useState(true);
 
@@ -42,7 +41,7 @@ const Room = ({ messageRepository }) => {
       </div>
       <Button name='Quit' onClick={quitRoom} />
       <div className={styles.container}>
-        <div className={styles.musicplayer}>Music!</div>
+        <div className={styles.videoplayer}>Video!</div>
         <div className={styles.chatbox}>
           <Chatbox
             messageRepository={messageRepository}

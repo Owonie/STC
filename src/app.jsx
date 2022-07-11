@@ -4,10 +4,9 @@ import Foyer from './component/foyer/foyer';
 import { Route, Routes } from 'react-router-dom';
 import Room from './component/room/room';
 import Sidebar from './component/sidebar/sidebar';
-import Header from './component/header/header';
-import Music from './component/recordshop/music';
+import Video from './component/videoPage/video';
 
-function App({ authService, musicService, messageRepository, roomRepository }) {
+function App({ authService, videoService, messageRepository, roomRepository }) {
   return (
     <section className={styles.app}>
       <div className={styles.container}>
@@ -32,8 +31,8 @@ function App({ authService, musicService, messageRepository, roomRepository }) {
               element={<Room messageRepository={messageRepository} />}
             />
             <Route
-              path='/music'
-              element={<Music musicService={musicService} />}
+              path='/video'
+              element={<Video videoService={videoService} />}
             />
           </Routes>
         </div>

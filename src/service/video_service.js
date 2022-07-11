@@ -1,4 +1,4 @@
-class MusicService {
+class VideoService {
   constructor(key) {
     this.key = key;
     this.getRequestOptions = {
@@ -29,4 +29,4 @@ class MusicService {
   }
 }
 
-export default MusicService;
+export default VideoService;
