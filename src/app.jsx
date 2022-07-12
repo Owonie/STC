@@ -4,9 +4,15 @@ import Foyer from './component/foyer/foyer';
 import { Route, Routes } from 'react-router-dom';
 import Room from './component/room/room';
 import Sidebar from './component/sidebar/sidebar';
-import Video from './component/videoPage/video';
+import Video from './component/video_page/video';
 
-function App({ authService, videoService, messageRepository, roomRepository }) {
+function App({
+  authService,
+  videoService,
+  messageRepository,
+  roomRepository,
+  videoRepository,
+}) {
   return (
     <section className={styles.app}>
       <div className={styles.container}>
@@ -28,11 +34,21 @@ function App({ authService, videoService, messageRepository, roomRepository }) {
             />
             <Route
               path='/room'
-              element={<Room messageRepository={messageRepository} />}
+              element={
+                <Room
+                  messageRepository={messageRepository}
+                  videoRepository={videoRepository}
+                />
+              }
             />
             <Route
               path='/video'
-              element={<Video videoService={videoService} />}
+              element={
+                <Video
+                  videoService={videoService}
+                  videoRepository={videoRepository}
+                />
+              }
             />
           </Routes>
         </div>

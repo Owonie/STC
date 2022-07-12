@@ -4,7 +4,7 @@ export const userDataSlice = createSlice({
   name: 'userData',
   initialState: {
     userId: null,
-    nickName: null,
+    displayName: null,
     roomId: null,
     photoURL: null,
   },

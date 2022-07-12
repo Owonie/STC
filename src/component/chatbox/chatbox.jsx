@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Message from '../message/message';
 import MessageInput from '../message_input/message_input';
 import styles from './chatbox.module.css';

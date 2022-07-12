@@ -1,16 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Chatbox from '../chatbox/chatbox';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../button/button';
 import styles from './room.module.css';
 import Header from '../header/header';
 import { useSelector } from 'react-redux';
+import VideoBox from '../video_box/video_box';
 
-const Room = ({ messageRepository }) => {
+const Room = ({ messageRepository, videoRepository }) => {
   const roomId = useSelector((state) => state.userData.roomId);
+  const videoList = useSelector((state) => state.videoList.myVideoList);
   const navigate = useNavigate();
   const [messages, setMessages] = useState({});
+  const [videos, setVideos] = useState([videoList]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
   const [onchat, setOnchat] = useState(true);
+
+  const selectVideo = (video) => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    setSelectedVideo(video);
+  };
 
   const quitRoom = () => {
     setOnchat(false);
@@ -34,6 +43,16 @@ const Room = ({ messageRepository }) => {
     return () => stopSync();
   }, [onchat, messageRepository]);
 
+  useEffect(() => {
+    if (onchat == false) {
+      return;
+    }
+    const stopSync = videoRepository.syncVideo(roomId, (docs) => {
+      setVideos(docs);
+    });
+    return () => stopSync();
+  }, [onchat, videoRepository]);
+
   return (
     <section className={styles.room}>
       <div className={styles.header}>
@@ -41,7 +60,13 @@ const Room = ({ messageRepository }) => {
       </div>
       <Button name='Quit' onClick={quitRoom} />
       <div className={styles.container}>
-        <div className={styles.videoplayer}>Video!</div>
+        <div className={styles.videoplayer}>
+          <VideoBox
+            videos={videoList}
+            selectedVideo={selectedVideo}
+            onVideoClick={selectVideo}
+          />
+        </div>
         <div className={styles.chatbox}>
           <Chatbox
             messageRepository={messageRepository}

@@ -3,13 +3,14 @@ import styles from './video.module.css';
 import SearchHeader from '../search_header/search_header';
 import VideoList from '../video_list/video_list';
 import VideoDetail from '../video_detail/video_detail';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addVideo } from '../../reducers/videoList';
 
-function Video({ videoService }) {
+function Video({ videoService, videoRepository }) {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const dispatch = useDispatch();
+  const roomId = useSelector((state) => state.userData.roomId);
 
   const selectVideo = (video) => {
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -17,6 +18,7 @@ function Video({ videoService }) {
   };
   const addSelectedVideo = (video) => {
     dispatch(addVideo(video));
+    videoRepository.saveVideo(video, roomId);
   };
   const search = useCallback(
     (query) => {
@@ -28,7 +30,6 @@ function Video({ videoService }) {
     },
     [videoService]
   );
-
   useEffect(() => {
     videoService
       .mostPopular() //
@@ -50,7 +51,7 @@ function Video({ videoService }) {
       <section className={styles.content}>
         {selectedVideo && (
           <div className={styles.detail}>
-            <VideoDetail video={selectedVideo} />
+            <VideoDetail video={selectedVideo} mode={'videopage'} />
           </div>
         )}
         <div className={styles.list}>
@@ -59,6 +60,7 @@ function Video({ videoService }) {
             onVideoClick={selectVideo}
             addSelectedVideo={addSelectedVideo}
             display={selectedVideo ? 'list' : 'grid'}
+            mode={'videopage'}
           />
         </div>
       </section>

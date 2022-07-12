@@ -11,6 +11,11 @@
   width: 100%;
 }
 
+.container.list.videobox {
+  width: 20%;
+  height: auto;
+}
+
 .video {
   width: 100%;
   height: 100%;
