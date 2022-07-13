@@ -1,9 +1,11 @@
 import React from 'react';
 import VideoDetail from '../video_detail/video_detail';
-import VideoList from '../video_list/video_list';
+import VideoListInRoom from '../video_list_room/video_list_room';
 import styles from './video_box.module.css';
 
 const VideoBox = ({ videos, selectedVideo, onVideoClick }) => {
+  console.log(`videos in video box:`, videos);
+
   return (
     <section className={styles.videobox}>
       <div className={styles.container}>
@@ -13,7 +15,7 @@ const VideoBox = ({ videos, selectedVideo, onVideoClick }) => {
           </div>
         )}
         <div className={styles.list}>
-          <VideoList
+          <VideoListInRoom
             videos={videos}
             onVideoClick={onVideoClick}
             display={selectedVideo ? 'list' : 'grid'}

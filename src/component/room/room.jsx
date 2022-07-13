@@ -9,10 +9,10 @@ import VideoBox from '../video_box/video_box';
 
 const Room = ({ messageRepository, videoRepository }) => {
   const roomId = useSelector((state) => state.userData.roomId);
-  const videoList = useSelector((state) => state.videoList.myVideoList);
   const navigate = useNavigate();
+  const [streamMode, setStreamMode] = useState('split');
   const [messages, setMessages] = useState({});
-  const [videos, setVideos] = useState([videoList]);
+  const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [onchat, setOnchat] = useState(true);
 
@@ -44,25 +44,23 @@ const Room = ({ messageRepository, videoRepository }) => {
   }, [onchat, messageRepository]);
 
   useEffect(() => {
-    if (onchat == false) {
-      return;
-    }
-    const stopSync = videoRepository.syncVideo(roomId, (docs) => {
+    const stopSync = videoRepository.syncVideoList(roomId, (docs) => {
       setVideos(docs);
     });
     return () => stopSync();
-  }, [onchat, videoRepository]);
+  }, [videoRepository]);
 
   return (
     <section className={styles.room}>
       <div className={styles.header}>
         <Header />
       </div>
+      <button className={styles.streammode}>mode</button>
       <Button name='Quit' onClick={quitRoom} />
       <div className={styles.container}>
         <div className={styles.videoplayer}>
           <VideoBox
-            videos={videoList}
+            videos={videos}
             selectedVideo={selectedVideo}
             onVideoClick={selectVideo}
           />

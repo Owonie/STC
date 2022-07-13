@@ -1,15 +1,8 @@
 import React, { memo } from 'react';
-import styles from './video_item.module.css';
+import styles from './video_item_room.module.css';
 
-const VideoItem = memo(
-  ({
-    video,
-    video: { snippet },
-    onVideoClick,
-    display,
-    addSelectedVideo,
-    mode,
-  }) => {
+const VideoItemInRoom = memo(
+  ({ video, video: { snippet }, onVideoClick, display, mode }) => {
     const displayType = display === 'list' ? styles.list : styles.grid;
     const displayMode = mode === 'bright' ? styles.bright : styles.dark;
 
@@ -25,16 +18,10 @@ const VideoItem = memo(
           <div className={[styles.metadata, { mode }]}>
             <p className={[styles.title, { mode }]}>{snippet.title}</p>
             <p className={[styles.channel, { mode }]}>{snippet.channelTitle}</p>
-            <button
-              className={[styles.add, { mode }]}
-              onClick={() => addSelectedVideo(video)}
-            >
-              add
-            </button>
           </div>
         </div>
       </li>
     );
   }
 );
-export default VideoItem;
+export default VideoItemInRoom;

@@ -16,7 +16,7 @@ class MessageRepository {
   }
   syncMessage(roomId, onUpdate) {
     const ref = collection(this.firestore_db, `rooms/${roomId}/messages`);
-    const q = query(ref, orderBy('time', 'asc')); // 메세지는 최대 30개만 표시한다.
+    const q = query(ref, orderBy('time', 'asc'));
     const unsub = onSnapshot(q, (snapshot) => {
       const data = snapshot.docs.map((doc) => ({
         ...doc.data(),

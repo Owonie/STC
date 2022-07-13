@@ -3,13 +3,11 @@ import styles from './video.module.css';
 import SearchHeader from '../search_header/search_header';
 import VideoList from '../video_list/video_list';
 import VideoDetail from '../video_detail/video_detail';
-import { useDispatch, useSelector } from 'react-redux';
-import { addVideo } from '../../reducers/videoList';
+import { useSelector } from 'react-redux';
 
 function Video({ videoService, videoRepository }) {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const dispatch = useDispatch();
   const roomId = useSelector((state) => state.userData.roomId);
 
   const selectVideo = (video) => {
@@ -17,7 +15,6 @@ function Video({ videoService, videoRepository }) {
     setSelectedVideo(video);
   };
   const addSelectedVideo = (video) => {
-    dispatch(addVideo(video));
     videoRepository.saveVideo(video, roomId);
   };
   const search = useCallback(
