@@ -19,15 +19,6 @@ class RoomRepository {
       }
     );
   }
-  removeRoom() {}
-
-  getMasterId(roomId, onUpdate) {
-    getDoc(doc(this.firestore_db, `rooms/${roomId}`)).then((doc) => {
-      const data = doc.data().masterId;
-      data && onUpdate(data);
-      console.log(`masterId: `, doc.data().masterId);
-    });
-  }
 }
 
 export default RoomRepository;

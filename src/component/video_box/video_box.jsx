@@ -3,15 +3,7 @@ import VideoDetailInRoom from '../video_detail_room/video_detail_room';
 import VideoListInRoom from '../video_list_room/video_list_room';
 import styles from './video_box.module.css';
 
-const VideoBox = ({
-  videos,
-  selectedVideo,
-  onVideoClick,
-  videoRepository,
-  streamMode,
-  changeStreamMode,
-  changeVideoState,
-}) => {
+const VideoBox = ({ videos, selectedVideo, onVideoClick, videoRepository }) => {
   return (
     <section className={styles.videobox}>
       <div className={styles.container}>
@@ -20,8 +12,6 @@ const VideoBox = ({
             <VideoDetailInRoom
               video={selectedVideo}
               videoRepository={videoRepository}
-              streamMode={streamMode}
-              changeVideoState={changeVideoState}
             />
           </div>
         )}
@@ -30,7 +20,6 @@ const VideoBox = ({
             videos={videos}
             onVideoClick={onVideoClick}
             display={selectedVideo ? 'list' : 'grid'}
-            streamMode={streamMode}
           />
         </div>
       </div>
