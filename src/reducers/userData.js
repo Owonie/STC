@@ -6,7 +6,9 @@ export const userDataSlice = createSlice({
     userId: null,
     displayName: null,
     roomId: null,
+    masterId: null,
     photoURL: null,
+    videoState: 0,
   },
   reducers: {
     updateUserId: (state, action) => {
@@ -18,13 +20,25 @@ export const userDataSlice = createSlice({
     updateRoomId: (state, action) => {
       state.roomId = action.payload;
     },
+    updateMasterId: (state, action) => {
+      state.masterId = action.payload;
+    },
     updatePhotoURL: (state, action) => {
       state.photoURL = action.payload;
+    },
+    updateVideoState: (state, action) => {
+      state.videoState = action.payload;
     },
   },
 });
 
-export const { updateUserId, updateDisplayName, updateRoomId, updatePhotoURL } =
-  userDataSlice.actions;
+export const {
+  updateUserId,
+  updateDisplayName,
+  updateRoomId,
+  updateMasterId,
+  updatePhotoURL,
+  updateVideoState,
+} = userDataSlice.actions;
 
 export default userDataSlice.reducer;

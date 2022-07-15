@@ -48,7 +48,7 @@ function Video({ videoService, videoRepository }) {
       <section className={styles.content}>
         {selectedVideo && (
           <div className={styles.detail}>
-            <VideoDetail video={selectedVideo} mode={'videopage'} />
+            <VideoDetail video={selectedVideo} />
           </div>
         )}
         <div className={styles.list}>
@@ -57,7 +57,6 @@ function Video({ videoService, videoRepository }) {
             onVideoClick={selectVideo}
             addSelectedVideo={addSelectedVideo}
             display={selectedVideo ? 'list' : 'grid'}
-            mode={'videopage'}
           />
         </div>
       </section>

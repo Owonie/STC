@@ -9,7 +9,12 @@ import {
   updatePhotoURL,
 } from '../../reducers/userData';
 
-const Foyer = ({ authService, messageRepository, roomRepository }) => {
+const Foyer = ({
+  authService,
+  messageRepository,
+  roomRepository,
+  videoRepository,
+}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onLogout = useCallback(() => {
@@ -36,6 +41,7 @@ const Foyer = ({ authService, messageRepository, roomRepository }) => {
         authService={authService}
         roomRepository={roomRepository}
         messageRepository={messageRepository}
+        videoRepository={videoRepository}
       />
     </div>
   );

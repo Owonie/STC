@@ -1,0 +1,9 @@
+.detail {
+  padding: 0.2em;
+  width: auto;
+  height: auto;
+}
+
+.description {
+  white-space: pre-wrap;
+}

@@ -11,7 +11,7 @@ class RoomRepository {
           console.log('이미 있는 방입니다!');
         } else {
           setDoc(doc(this.firestore_db, 'rooms', `${room.roomId}`), {
-            userId: userId,
+            masterId: userId,
             roomId: room.roomId,
           });
           console.log(`${room.roomId}이(가) 만들어졌습니다!`);
@@ -19,8 +19,15 @@ class RoomRepository {
       }
     );
   }
-
   removeRoom() {}
+
+  getMasterId(roomId, onUpdate) {
+    getDoc(doc(this.firestore_db, `rooms/${roomId}`)).then((doc) => {
+      const data = doc.data().masterId;
+      data && onUpdate(data);
+      console.log(`masterId: `, doc.data().masterId);
+    });
+  }
 }
 
 export default RoomRepository;
