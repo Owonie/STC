@@ -2,9 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import AddRoomForm from '../add_room_form/add_room_form';
 import JoinRoomForm from '../join_room_form/join_room_form';
-import styles from './rooms.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateMasterId, updateRoomId } from '../../reducers/userData';
+import { updateRoomId } from '../../reducers/userData';
+import styles from './rooms.module.css';
 
 const Rooms = ({ messageRepository, roomRepository }) => {
   const dispatch = useDispatch();
@@ -16,17 +16,18 @@ const Rooms = ({ messageRepository, roomRepository }) => {
     messageRepository.initMessage(room);
   };
 
-  const joinRoom = (event) => {
-    goToRoom(event);
+  const joinRoom = (room) => {
+    goToRoom(room);
   };
 
-  const goToRoom = (event) => {
-    dispatch(updateRoomId(event));
-    roomRepository.getMasterId(event, (docs) => {
-      console.log(`masterId: `, docs);
-      dispatch(updateMasterId(docs));
+  const goToRoom = (room) => {
+    roomRepository.getRoom(room, (data) => {
+      const event = data;
+      if (event == true) {
+        dispatch(updateRoomId(room));
+        navigate('/room');
+      }
     });
-    navigate('/room');
   };
 
   return (

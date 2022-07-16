@@ -1,9 +1,40 @@
+@value STC_White from '../../common/colors.css';
+
 .detail {
-  padding: 0.2em;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
+}
+.videobox {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.player {
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+.video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .description {
   white-space: pre-wrap;
+}
+.title {
+  margin: 2em 0 0.7em 0;
+  padding-bottom: 2em;
+  font-size: 1em;
+  border-bottom: 1px solid STC_White;
+}
+.description {
+  margin: 2em 0 0.7em 0;
+  padding-bottom: 2em;
+  font-size: 1em;
+  border-bottom: 1px solid STC_White;
 }

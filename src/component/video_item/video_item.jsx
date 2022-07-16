@@ -17,7 +17,7 @@ const VideoItem = memo(
             <p className={[styles.title]}>{snippet.title}</p>
             <p className={[styles.channel]}>{snippet.channelTitle}</p>
             <button
-              className={[styles.add]}
+              className={[styles.addbutton]}
               onClick={() => addSelectedVideo(video)}
             >
               add

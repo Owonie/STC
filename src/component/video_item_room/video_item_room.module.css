@@ -1,6 +1,10 @@
+@value STC_White,STC_MaastrichtBlue,STC_YankeesBlue from '../../common/colors.css';
+
 .container {
-  width: 50%;
-  padding: 0.2em;
+  width: 100%;
+  padding: 0.3em 0.5em;
+  border-radius: 1em;
+  background-color: STC_YankeesBlue;
 }
 
 .container.grid {
@@ -17,37 +21,43 @@
 }
 
 .video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
   border: 1px solid lightgray;
+  border-radius: 1em;
   box-shadow: 3px 3px 5px 0px rgba(191, 191, 191, 0.53);
-  border-radius: 0.5em;
   cursor: pointer;
   transition: transform 160ms ease-in;
+  opacity: 0.45;
 }
 
 .video:hover {
-  transform: scale(1.05);
+  transform: scale(1.07);
+  opacity: 1;
 }
 
 .thumbnail {
-  width: 40%;
+  width: 100%;
   height: 100%;
-  border-radius: 0.5em;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
 }
 
+.video {
+  height: 10rem;
+}
 .metadata {
-  margin-left: 0.2em;
+  width: 100%;
+  height: 100%;
+  padding: 0.2em 0.7rem;
+  color: STC_White;
+  overflow-y: hidden;
 }
 
-.title,
-.channel {
+.title {
   margin: 0;
-  font-size: 0.8rem;
-}
-
-.channel {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }

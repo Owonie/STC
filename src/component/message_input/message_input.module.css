@@ -8,26 +8,32 @@
 }
 
 .inputForm {
+  margin: 1em 0em;
   height: 7em;
-  width: 75%;
+  width: 80%;
 }
 .input {
-  width: 85%;
-  height: 100%;
+  width: 90%;
+  height: 80%;
+  padding: 2em 1em 1em 1em;
   border-radius: 1.5rem;
   border-color: STC_DarkPeach;
   background-color: STC_Black;
   color: STC_White;
+  resize: none;
+}
+.input::-webkit-scrollbar {
+  display: none;
 }
 .input:focus {
   border-color: STC_White;
 }
 
 .button {
+  margin-top: 1em;
+  height: 3em;
   background-color: STC_Grey;
   color: STC_Peach;
-  margin-top: 0.5em;
-  height: 3em;
   border: none;
 }
 .button:hover {

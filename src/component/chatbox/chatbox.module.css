@@ -1,20 +1,18 @@
 @value STC_YankeesBlue from '../../common/colors.css';
 
 .chatbox {
-  width: 100%;
-  height: 100%;
-  flex-basis: 50%;
-  overflow-y: auto;
-  border-radius: 2em;
-  background-color: STC_YankeesBlue;
-  display: flex;
   text-align: center;
-  justify-content: center;
-  z-index: 2;
+  min-width: 20rem;
+  height: 95%;
+  margin: 0.5em;
+  overflow-y: auto;
+  border-radius: 1em;
+  background-color: STC_YankeesBlue;
 }
 .container {
   display: flex;
   flex-direction: column;
+  min-width: 20rem;
   width: 100%;
   height: 100%;
   justify-items: center;
@@ -34,4 +32,7 @@
   padding: 0.5em 2em;
   flex-direction: column;
   opacity: 87%;
+}
+.messages::-webkit-scrollbar {
+  display: none;
 }

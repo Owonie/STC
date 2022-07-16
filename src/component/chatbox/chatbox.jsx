@@ -17,7 +17,6 @@ const Chatbox = ({ sendMessage, messages }) => {
   return (
     <section className={styles.chatbox}>
       <div className={styles.container}>
-        <div className={styles.userlist}>userList</div>
         <ul className={styles.messages} ref={scrollRef}>
           {Object.keys(messages).map((key) => (
             <Message key={key} message={messages[key]} userName={userId} />

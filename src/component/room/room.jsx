@@ -71,7 +71,6 @@ const Room = ({ messageRepository, videoRepository }) => {
           />
         </div>
       </div>
-      <footer>이건 채팅방 밑이여</footer>
     </section>
   );
 };

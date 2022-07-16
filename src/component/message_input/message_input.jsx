@@ -27,6 +27,9 @@ const MessageInput = ({
   };
   const onKeyPress = (event) => {
     if (event.key == 'Enter') {
+      if (messageRef.current.value.trim() == '') {
+        return event.preventDefault();
+      }
       onSubmit(event);
     }
   };
@@ -34,12 +37,12 @@ const MessageInput = ({
   return (
     <div className={styles.inputMessage}>
       <form className={styles.inputForm} ref={formRef} action=''>
-        <input
+        <textarea
           className={styles.input}
           ref={messageRef}
-          type='text'
+          row='5'
           onKeyPress={onKeyPress}
-        />
+        ></textarea>
       </form>
       <button className={styles.button} onClick={onSubmit}>
         <i className='fa-solid fa-paper-plane fa-2x'></i>

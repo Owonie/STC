@@ -1,34 +1,26 @@
+@value STC_White,STC_YankeesBlue,STC_Peach from '../../common/colors.css';
+
 .header {
   display: flex;
   height: 4rem;
   padding: 0.8em 5em;
   background: black;
-  color: white;
+  color: STC_White;
 }
 
 .title {
-  border-radius: 1rem;
-  font-size: 2.5rem;
-  font-family: "Times New Roman", Times, serif;
-  background: rgb(255, 255, 255);
-  color: black;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: STC_Peach;
   cursor: pointer;
   transition: transform 160ms ease-in;
-}
-
-.title:hover {
-  transform: scale(1.2);
 }
 
 .logo {
   display: flex;
   align-items: center;
   margin-right: 1em;
-}
-
-.img {
-  width: 200px;
-  height: auto;
 }
 
 .input {
@@ -40,10 +32,11 @@
 }
 
 .button {
-  background-color: rgb(169, 94, 169);
   width: 10%;
+  background-color: STC_Peach;
   cursor: pointer;
   transition: transform 160ms ease-in;
+  border-radius: 0.5em;
 }
 
 .button:hover {

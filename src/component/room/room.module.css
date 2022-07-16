@@ -13,13 +13,13 @@
 }
 .container {
   width: 100%;
-  display: flex;
+  display: inline-flex;
   flex: 1;
   min-height: 0;
 }
 .videoplayer {
-  width: 70%;
+  width: 75%;
 }
 .chatbox {
-  width: 30%;
+  width: 25%;
 }

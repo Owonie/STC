@@ -13,7 +13,7 @@ class VideoService {
     };
 
     const response = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=24&videoCategoryId=10&q=music&order=viewCount&type=video&key=${this.key}`,
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=24&chart=mostPopular&key=${this.key}`,
       this.getRequestOptions
     );
     const result = await response.json();
@@ -21,7 +21,7 @@ class VideoService {
   }
   async search(query) {
     const response = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=24&videoCategoryId=10&videoLicense=youtube&q=${query}&order=viewCount&type=video&key=${this.key}`,
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=24&videoLicense=youtube&q=${query}&order=viewCount&type=video&key=${this.key}`,
       this.getRequestOptions
     );
     const result = await response.json();

@@ -14,7 +14,7 @@
 .message {
   margin: 0 1em;
   padding: 0 0.5em;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
 }
 .avatar {
@@ -33,20 +33,22 @@
   font-size: 10px;
 }
 .content {
+  display: inline-block;
+  max-width: 15em;
   padding: 0.6em 0.8em;
   border-radius: 0.3em;
-  background-color: STC_PoliceBlue;
   margin-right: auto;
   margin-top: 0.5em;
-  display: inline-block;
-  min-height: 2em;
+  background-color: STC_PoliceBlue;
+  word-break: break-all;
 }
 .myContent {
+  display: inline-block;
+  max-width: 15em;
   padding: 0.6em 0.8em;
   border-radius: 0.3em;
-  background-color: STC_Peach;
-  margin-left: auto;
+  margin-left: 0.5em;
   margin-top: 0.5em;
-  display: inline-block;
-  min-height: 2em;
+  background-color: STC_Peach;
+  word-break: break-all;
 }

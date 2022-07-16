@@ -19,6 +19,16 @@ class RoomRepository {
       }
     );
   }
+  getRoom(room, data) {
+    getDoc(doc(this.firestore_db, 'rooms', `${room}`)).then((docSnap) => {
+      if (docSnap.exists()) {
+        data(true);
+      } else {
+        console.log('존재하지 않는 방입니다!');
+        data(false);
+      }
+    });
+  }
 }
 
 export default RoomRepository;

@@ -33,18 +33,9 @@ function Video({ videoService, videoRepository }) {
       .then((videos) => setVideos(videos));
   }, [videoService]);
 
-  const homepage = useCallback(() => {
-    setSelectedVideo(null);
-    videoService
-      .mostPopular() //
-      .then((result) =>
-        result.items.map((item) => ({ ...item, id: item.id.videoId }))
-      )
-      .then((videos) => setVideos(videos));
-  });
   return (
     <div className={styles.app}>
-      <SearchHeader onSearch={search} onHomepage={homepage} />
+      <SearchHeader onSearch={search} />
       <section className={styles.content}>
         {selectedVideo && (
           <div className={styles.detail}>

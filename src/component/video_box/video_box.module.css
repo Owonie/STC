@@ -1,0 +1,21 @@
+.videobox {
+  width: 100%;
+  height: 100%;
+  display: flexbox;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+.detail {
+  display: inline-flex;
+  min-width: 80%;
+  height: auto;
+}
+.list {
+  min-width: 10rem;
+  max-width: 15rem;
+  height: 70rem;
+  overflow-y: hidden;
+}

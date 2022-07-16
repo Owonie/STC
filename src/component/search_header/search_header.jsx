@@ -1,7 +1,7 @@
 import React, { useRef, memo } from 'react';
 import styles from './search_header.module.css';
 
-const SearchHeader = memo(({ onSearch, onHomepage }) => {
+const SearchHeader = memo(({ onSearch }) => {
   const inputRef = useRef();
   const handleSearch = () => {
     const value = inputRef.current.value;
@@ -15,16 +15,11 @@ const SearchHeader = memo(({ onSearch, onHomepage }) => {
       handleSearch();
     }
   };
-  const handleHomepage = () => {
-    onHomepage();
-  };
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <img className={styles.img} src='/images/loona-icon.ico' alt='logo' />
-        <button className={styles.title} onClick={handleHomepage}>
-          LOONA
-        </button>
+        <button className={styles.title}>STC</button>
       </div>
       <input
         ref={inputRef}

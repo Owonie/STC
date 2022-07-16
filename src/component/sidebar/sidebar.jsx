@@ -1,15 +1,31 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styles from './sidebar.module.css';
 
 const Sidebar = (props) => {
   const navigate = useNavigate();
+  const roomId = useSelector((state) => state.userData.roomId);
+
   const onClick = (event) => {
     event.preventDefault();
-    navigate(('/', event.target.value), {
-      replace: false,
-    });
-    console.log('changed');
+    if (event.target.value == 'foyer') {
+      navigate(('/', event.target.value), {
+        replace: true,
+      });
+    }
+    if (roomId == null) {
+      if (event.target.value == 'room' || event.target.value == 'video') {
+        console.log(
+          `아직 방이 존재하지 않습니다. 채팅방을 만들거나 입장해주세요.`
+        );
+      }
+    }
+    if (roomId != null) {
+      navigate(('/', event.target.value), {
+        replace: true,
+      });
+    }
   };
 
   return (
