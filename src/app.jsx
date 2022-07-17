@@ -5,6 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 import Room from './component/room/room';
 import Sidebar from './component/sidebar/sidebar';
 import Video from './component/video_page/video';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App({
   authService,
@@ -18,6 +20,7 @@ function App({
       <div className={styles.container}>
         <div className={styles.sidebar}>
           <Sidebar />
+          <ToastContainer />
         </div>
         <div className={styles.mainbox}>
           <Routes>

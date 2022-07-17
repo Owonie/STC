@@ -5,7 +5,6 @@ import styles from './join_room_form.module.css';
 const JoinRoomForm = ({ joinRoom }) => {
   const formRef = useRef();
   const roomNameRef = useRef();
-
   const onSubmit = (event) => {
     event.preventDefault();
     const room = roomNameRef.current.value;

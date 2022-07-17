@@ -5,6 +5,7 @@ import JoinRoomForm from '../join_room_form/join_room_form';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateRoomId } from '../../reducers/userData';
 import styles from './rooms.module.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Rooms = ({ messageRepository, roomRepository }) => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const Rooms = ({ messageRepository, roomRepository }) => {
 
   const goToRoom = (room) => {
     roomRepository.getRoom(room, (data) => {
+      console.log(data);
       const event = data;
       if (event == true) {
         dispatch(updateRoomId(room));

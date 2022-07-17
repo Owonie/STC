@@ -7,6 +7,7 @@ import {
   query,
   orderBy,
 } from 'firebase/firestore';
+import { toast } from 'react-toastify';
 
 class VideoRepository {
   constructor(app) {
@@ -29,6 +30,7 @@ class VideoRepository {
       video: video,
       time: serverTimestamp(),
     });
+    toast.success('Video Added!', { autoClose: 1000 });
   }
 }
 

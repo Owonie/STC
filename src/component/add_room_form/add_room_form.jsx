@@ -1,17 +1,15 @@
-import { React, useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import Button from '../button/button';
 import styles from './add_room_form.module.css';
 
-const AddRoomForm = ({ onAdd }) => {
+const AddRoomForm = memo(({ onAdd }) => {
   const roomIdRef = useRef();
   const formRef = useRef();
-
   const onSubmit = (event) => {
     event.preventDefault();
     const room = {
       roomId: roomIdRef.current.value,
     };
-    console.log('방을 만들고 있습니당!');
     formRef.current.reset();
     onAdd(room);
   };
@@ -34,6 +32,6 @@ const AddRoomForm = ({ onAdd }) => {
       <Button name='create' onClick={onSubmit} />
     </div>
   );
-};
+});
 
 export default AddRoomForm;
