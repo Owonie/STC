@@ -23,7 +23,7 @@ class RoomRepository {
   getRoom(room, data) {
     getDoc(doc(this.firestore_db, 'rooms', `${room}`)).then((docSnap) => {
       if (docSnap.exists()) {
-        toast.success('방이 입장합니다!', { autoClose: 1000 });
+        toast.success('방에 입장합니다!', { autoClose: 1000 });
         data(true);
       } else {
         toast.error('존재하지 않는 방입니다!', { autoClose: 1000 });

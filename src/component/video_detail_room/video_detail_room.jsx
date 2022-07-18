@@ -1,8 +1,38 @@
-import React, { useState } from 'react';
+import React, { memo, useCallback } from 'react';
 import styles from './video_detail_room.module.css';
 import Youtube from 'react-youtube';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useRef } from 'react';
+import {
+  updateCurrentTime,
+  updateVideoId,
+  updateInRoom,
+} from '../../reducers/userData';
+import { useLinkClickHandler } from 'react-router-dom';
 
-const VideoDetailInRoom = ({ video, video: { snippet } }) => {
+const VideoDetailInRoom = memo(({ video, video: { snippet } }) => {
+  const dispatch = useDispatch();
+  const currentTime = useSelector((state) => state.userData.currentTime);
+  const userId = useSelector((state) => state.userData.userId);
+  const roomId = useSelector((state) => state.userData.roomId);
+  const inRoom = useSelector((state) => state.userData.inRoom);
+  const playerRef = useRef();
+
+  const _onPlay = useCallback(
+    (e) => {
+      if (playerRef.current) {
+        const time = playerRef.current.getCurrentTime();
+        dispatch(updateCurrentTime(time));
+      }
+    },
+    [inRoom]
+  );
+
+  useEffect(() => {
+    dispatch(updateVideoId(video.id));
+  }, [video]);
+
   return (
     <section className={styles.detail}>
       <div className={styles.videobox}>
@@ -19,6 +49,14 @@ const VideoDetailInRoom = ({ video, video: { snippet } }) => {
                 modestbranding: 1,
               },
             }}
+            onStateChange={(e) => {
+              playerRef.current = e.target;
+            }}
+            onPlay={(e) => {
+              if (!inRoom) {
+                _onPlay(e.target);
+              }
+            }}
           />
         </div>
 
@@ -28,6 +66,6 @@ const VideoDetailInRoom = ({ video, video: { snippet } }) => {
       </div>
     </section>
   );
-};
+});
 
 export default VideoDetailInRoom;

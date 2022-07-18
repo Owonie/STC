@@ -2,12 +2,13 @@ import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 import Rooms from '../rooms/rooms';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   updateDisplayName,
   updateUserId,
   updatePhotoURL,
 } from '../../reducers/userData';
+import Login from '../login/login';
 
 const Foyer = ({
   authService,
@@ -17,6 +18,7 @@ const Foyer = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const onLogout = useCallback(() => {
     authService.logout();
   }, [authService]);
@@ -35,8 +37,9 @@ const Foyer = ({
 
   return (
     <div>
-      <Header onLogout={onLogout} />
-      <h1>this is foyer!</h1>
+      <Header authService={authService} />
+      <Login onLogout={onLogout} authService={authService} />
+
       <Rooms
         authService={authService}
         roomRepository={roomRepository}

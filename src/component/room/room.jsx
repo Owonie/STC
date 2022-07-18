@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../button/button';
 import styles from './room.module.css';
 import Header from '../header/header';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import VideoBox from '../video_box/video_box';
+import { updateRoomId, updateInRoom } from '../../reducers/userData';
 
 const Room = ({ messageRepository, videoRepository }) => {
   const roomId = useSelector((state) => state.userData.roomId);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [messages, setMessages] = useState({});
   const [videos, setVideos] = useState([]);
@@ -21,8 +23,10 @@ const Room = ({ messageRepository, videoRepository }) => {
   };
 
   const quitRoom = () => {
+    dispatch(updateRoomId(null));
+    dispatch(updateInRoom(false));
     setOnchat(false);
-    navigate('/foyer', {
+    navigate('/', {
       replace: true,
     });
   };

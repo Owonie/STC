@@ -31,3 +31,13 @@
   width: 100%;
   height: 100%;
 }
+.player {
+  display: flex;
+  height: 50%;
+  width: 50%;
+}
+.player_hidden {
+  display: flex;
+  height: 50%;
+  width: 50%;
+}

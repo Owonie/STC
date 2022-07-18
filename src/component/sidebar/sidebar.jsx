@@ -1,27 +1,30 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { updateInRoom } from '../../reducers/userData';
 import styles from './sidebar.module.css';
 
 const Sidebar = (props) => {
   const navigate = useNavigate();
   const roomId = useSelector((state) => state.userData.roomId);
-
+  const dispatch = useDispatch();
   const onClick = (event) => {
     event.preventDefault();
-    if (event.target.value == 'foyer') {
-      navigate(('/', event.target.value), {
+    if (event.target.value == '') {
+      navigate('/', {
         replace: true,
       });
     }
     if (roomId == null) {
       if (event.target.value == 'room' || event.target.value == 'video') {
-        console.log(
-          `아직 방이 존재하지 않습니다. 채팅방을 만들거나 입장해주세요.`
-        );
+        toast.error(' 우선 방을 만들거나 입장해주세요.', { autoClose: 1500 });
       }
     }
     if (roomId != null) {
+      if (event.target.value != 'room') {
+        dispatch(updateInRoom(false));
+      }
       navigate(('/', event.target.value), {
         replace: true,
       });
@@ -34,7 +37,7 @@ const Sidebar = (props) => {
         <li className={styles.list}>
           <button
             className={`${styles.button} ${styles.btn_foyer}`}
-            value='foyer'
+            value=''
             onClick={onClick}
           >
             <i className='fa-solid fa-house'></i>

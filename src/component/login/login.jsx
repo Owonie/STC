@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Footer from '../footer/footer';
-import Header from '../header/header';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   updateDisplayName,
   updateUserId,
   updatePhotoURL,
 } from '../../reducers/userData';
+import { toast } from 'react-toastify';
 
-const Login = ({ authService }) => {
+const Login = ({ authService, onLogout }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onLogin = (event) => {
@@ -24,23 +23,23 @@ const Login = ({ authService }) => {
     dispatch(updateUserId(userId));
     dispatch(updateDisplayName(displayName));
     dispatch(updatePhotoURL(photoURL));
-    navigate(`/foyer`);
   };
 
   useEffect(() => {
     authService.onAuthChange((user) => {
+      toast.success('로그인 성공', { autoClose: 1000 });
       user && goToFoyer(user.uid);
     });
-  });
+    navigate('/', {
+      replace: true,
+    });
+  }, [authService]);
 
   return (
-    <div>
-      <Header />
-      <h1>this is login</h1>
-      <button>Logout</button>
+    <div id='login'>
+      {onLogout && <button onClick={onLogout}>Logout</button>}
       <button onClick={onLogin}>Google</button>
       <button onClick={onLogin}>Github</button>
-      <Footer />
     </div>
   );
 };
