@@ -9,7 +9,6 @@ import {
   updateVideoId,
   updateInRoom,
 } from '../../reducers/userData';
-import { useLinkClickHandler } from 'react-router-dom';
 
 const VideoDetailInRoom = memo(({ video, video: { snippet } }) => {
   const dispatch = useDispatch();

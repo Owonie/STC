@@ -6,7 +6,6 @@ import Sidebar from './component/sidebar/sidebar';
 import Video from './component/video_page/video';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from 'react-redux';
 
 import Youtube_Player from './component/youtube_player/youtube_player';
 
@@ -17,8 +16,6 @@ function App({
   roomRepository,
   videoRepository,
 }) {
-  const inRoom = useSelector((state) => state.userData.inRoom);
-
   return (
     <section className={styles.app}>
       <div className={styles.container}>
@@ -29,9 +26,7 @@ function App({
         <div className={styles.mainbox}>
           <div
             className={inRoom == true ? styles.player_hidden : styles.player}
-          >
-            <Youtube_Player inRoom={inRoom} />
-          </div>
+          ></div>
           <Routes>
             <Route
               path='/'
