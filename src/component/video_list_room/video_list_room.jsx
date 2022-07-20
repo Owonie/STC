@@ -1,14 +1,12 @@
-import React from 'react';
+import { useEffect } from 'react';
 import VideoItemInRoom from '../video_item_room/video_item_room';
+import { toast } from 'react-toastify';
 import styles from './video_list_room.module.css';
 
-const VideoListInRoom = ({
-  videos,
-  onVideoClick,
-  addSelectedVideo,
-  display,
-  mode,
-}) => {
+const VideoListInRoom = ({ videos, onVideoClick, display, mode }) => {
+  useEffect(() => {
+    videos && toast.success('영상이 추가됐습니다!', { autoClose: 1000 });
+  }, [videos]);
   return (
     <section className={styles.videoList}>
       <div className={styles.container}>
@@ -19,7 +17,6 @@ const VideoListInRoom = ({
                 key={element.video.id}
                 video={element.video}
                 onVideoClick={onVideoClick}
-                addSelectedVideo={addSelectedVideo}
                 display={display}
                 mode={mode}
               />

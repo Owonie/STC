@@ -7,8 +7,6 @@ import Video from './component/video_page/video';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Youtube_Player from './component/youtube_player/youtube_player';
-
 function App({
   authService,
   videoService,
@@ -24,9 +22,6 @@ function App({
           <ToastContainer />
         </div>
         <div className={styles.mainbox}>
-          <div
-            className={inRoom == true ? styles.player_hidden : styles.player}
-          ></div>
           <Routes>
             <Route
               path='/'

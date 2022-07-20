@@ -1,36 +1,36 @@
-import React, { memo, useCallback } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import styles from './video_detail_room.module.css';
 import Youtube from 'react-youtube';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { useRef } from 'react';
-import {
-  updateCurrentTime,
-  updateVideoId,
-  updateInRoom,
-} from '../../reducers/userData';
+import { updateCurrentTime } from '../../reducers/userData';
 
-const VideoDetailInRoom = memo(({ video, video: { snippet } }) => {
+const VideoDetailInRoom = ({ video, video: { snippet } }) => {
   const dispatch = useDispatch();
   const currentTime = useSelector((state) => state.userData.currentTime);
-  const userId = useSelector((state) => state.userData.userId);
-  const roomId = useSelector((state) => state.userData.roomId);
   const inRoom = useSelector((state) => state.userData.inRoom);
   const playerRef = useRef();
 
   const _onPlay = useCallback(
     (e) => {
-      if (playerRef.current) {
+      if (playerRef.current && currentTime) {
         const time = playerRef.current.getCurrentTime();
         dispatch(updateCurrentTime(time));
       }
     },
     [inRoom]
   );
+  const _onReady = useCallback((e) => {
+    currentTime && e.seekTo(currentTime);
+    e.playVideo();
+  }, []);
 
   useEffect(() => {
-    dispatch(updateVideoId(video.id));
-  }, [video]);
+    window.addEventListener('beforeunload', _onPlay);
+    return () => {
+      const time = playerRef.current.getCurrentTime();
+      dispatch(updateCurrentTime(time));
+    };
+  }, []);
 
   return (
     <section className={styles.detail}>
@@ -56,6 +56,9 @@ const VideoDetailInRoom = memo(({ video, video: { snippet } }) => {
                 _onPlay(e.target);
               }
             }}
+            onReady={(e) => {
+              _onReady(e.target);
+            }}
           />
         </div>
 
@@ -65,6 +68,6 @@ const VideoDetailInRoom = memo(({ video, video: { snippet } }) => {
       </div>
     </section>
   );
-});
+};
 
 export default VideoDetailInRoom;

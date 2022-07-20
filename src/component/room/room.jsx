@@ -6,10 +6,16 @@ import styles from './room.module.css';
 import Header from '../header/header';
 import { useDispatch, useSelector } from 'react-redux';
 import VideoBox from '../video_box/video_box';
-import { updateRoomId, updateInRoom } from '../../reducers/userData';
+import {
+  updateRoomId,
+  updateInRoom,
+  updatePlayedVideo,
+  updateCurrentTime,
+} from '../../reducers/userData';
 
 const Room = ({ messageRepository, videoRepository }) => {
   const roomId = useSelector((state) => state.userData.roomId);
+  const playedVideo = useSelector((state) => state.userData.playedVideo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [messages, setMessages] = useState({});
@@ -20,11 +26,14 @@ const Room = ({ messageRepository, videoRepository }) => {
   const selectVideo = (video) => {
     window.scrollTo({ top: 0, behavior: 'auto' });
     setSelectedVideo(video);
+    dispatch(updatePlayedVideo(video));
   };
 
   const quitRoom = () => {
     dispatch(updateRoomId(null));
     dispatch(updateInRoom(false));
+    dispatch(updateCurrentTime(null));
+    dispatch(updatePlayedVideo(null));
     setOnchat(false);
     navigate('/', {
       replace: true,
@@ -51,6 +60,12 @@ const Room = ({ messageRepository, videoRepository }) => {
     });
     return () => stopSync();
   }, [videoRepository]);
+
+  useEffect(() => {
+    if (playedVideo != null) {
+      setSelectedVideo(playedVideo);
+    }
+  }, []);
 
   return (
     <section className={styles.room}>
