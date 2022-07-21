@@ -27,7 +27,7 @@ const Login = ({ authService, onLogout }) => {
 
   useEffect(() => {
     authService.onAuthChange((user) => {
-      toast.success('로그인 성공', { autoClose: 1000 });
+      toast.success('대기실입니다!', { autoClose: 1000 });
       user && goToFoyer(user.uid);
     });
     navigate('/', {

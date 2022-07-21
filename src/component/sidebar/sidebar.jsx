@@ -8,26 +8,31 @@ import styles from './sidebar.module.css';
 const Sidebar = (props) => {
   const navigate = useNavigate();
   const roomId = useSelector((state) => state.userData.roomId);
+  const inRoom = useSelector((state) => state.userData.inRoom);
   const dispatch = useDispatch();
   const onClick = (event) => {
     event.preventDefault();
-    if (event.target.value == '') {
-      navigate('/', {
-        replace: true,
-      });
-    }
     if (roomId == null) {
       if (event.target.value == 'room' || event.target.value == 'video') {
         toast.error(' 우선 방을 만들거나 입장해주세요.', { autoClose: 1500 });
       }
     }
     if (roomId != null) {
+      // 이미 입장한 방이 있을 경우.
       if (event.target.value != 'room') {
         dispatch(updateInRoom(false));
+        navigate(('/', event.target.value), {
+          replace: true,
+        });
+      } else {
+        // 다시 방으로 들어갈 때
+        if (inRoom == false) {
+          dispatch(updateInRoom(true));
+          navigate(('/', event.target.value), {
+            replace: true,
+          });
+        }
       }
-      navigate(('/', event.target.value), {
-        replace: true,
-      });
     }
   };
 

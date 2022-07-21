@@ -18,16 +18,19 @@ const VideoDetailInRoom = ({ video, video: { snippet } }) => {
     },
     [inRoom]
   );
+
   const _onReady = useCallback((e) => {
-    currentTime && e.seekTo(currentTime);
+    e.seekTo(currentTime);
     e.playVideo();
   }, []);
 
   useEffect(() => {
     window.addEventListener('beforeunload', _onPlay);
     return () => {
-      const time = playerRef.current.getCurrentTime();
-      dispatch(updateCurrentTime(time));
+      if (playerRef.current != undefined) {
+        const time = playerRef.current.getCurrentTime();
+        dispatch(updateCurrentTime(time));
+      }
     };
   }, []);
 
@@ -60,7 +63,6 @@ const VideoDetailInRoom = ({ video, video: { snippet } }) => {
             }}
           />
         </div>
-
         <h2 className={styles.title}>{snippet.title}</h2>
         <h3 className={styles.channelTitle}>{snippet.channelTitle}</h3>
         <h3 className={styles.description}>{snippet.description}</h3>
