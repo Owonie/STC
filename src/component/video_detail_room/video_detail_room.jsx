@@ -9,7 +9,6 @@ const VideoDetailInRoom = ({ video, video: { snippet } }) => {
   const currentTime = useSelector((state) => state.userData.currentTime);
   const inRoom = useSelector((state) => state.userData.inRoom);
   const playerRef = useRef();
-
   const _onPlay = useCallback(
     (e) => {
       if (playerRef.current && currentTime) {

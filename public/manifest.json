@@ -1,0 +1,10 @@
+{
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "name": "Split-Then-Combine",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "STC",
+  "start_url": "/",
+  "theme_color": "#ffffff"
+}
