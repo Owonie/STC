@@ -6,5 +6,8 @@
   "scope": "/",
   "short_name": "STC",
   "start_url": "/",
-  "theme_color": "#ffffff"
+  "theme_color": "#303030",
+  "categories": [],
+  "screenshots": [],
+  "shortcuts": []
 }
