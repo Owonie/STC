@@ -6,7 +6,6 @@ importScripts(
 
 const CACHE = 'pwabuilder-page';
 
-// TODO: replace the following with the correct offline fallback page i.e.: const offlineFallbackPage = "offline.html";
 const offlineFallbackPage = 'offline.html';
 
 self.addEventListener('message', (event) => {
@@ -26,6 +25,11 @@ if (workbox.navigationPreload.isSupported()) {
 }
 
 self.addEventListener('fetch', (event) => {
+  if (event.request.url.endWith('/index.html')) {
+    const resp = Response.redirect('/', 301);
+    event.respondWith(resp);
+  }
+
   if (event.request.mode === 'navigate') {
     event.respondWith(
       (async () => {

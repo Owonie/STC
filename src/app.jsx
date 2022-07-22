@@ -1,6 +1,6 @@
 import styles from './app.module.css';
 import Foyer from './component/foyer/foyer';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useRoutes } from 'react-router-dom';
 import Room from './component/room/room';
 import Sidebar from './component/sidebar/sidebar';
 import Video from './component/video_page/video';
@@ -17,9 +17,9 @@ function App({
   return (
     <section className={styles.app}>
       <div className={styles.container}>
+        <ToastContainer />
         <div className={styles.sidebar}>
           <Sidebar />
-          <ToastContainer />
         </div>
         <div className={styles.mainbox}>
           <Routes>
@@ -32,9 +32,21 @@ function App({
                   roomRepository={roomRepository}
                 />
               }
-            />
+            >
+              <Route
+                path='index.html'
+                element={
+                  <Foyer
+                    authService={authService}
+                    messageRepository={messageRepository}
+                    roomRepository={roomRepository}
+                  />
+                }
+              />
+            </Route>
+
             <Route
-              path='/room'
+              path='room'
               element={
                 <Room
                   messageRepository={messageRepository}
@@ -43,7 +55,7 @@ function App({
               }
             />
             <Route
-              path='/video'
+              path='video'
               element={
                 <Video
                   videoService={videoService}

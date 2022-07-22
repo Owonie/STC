@@ -6,7 +6,6 @@ import {
   updateUserId,
   updatePhotoURL,
 } from '../../reducers/userData';
-import { toast } from 'react-toastify';
 
 const Login = ({ authService, onLogout }) => {
   const dispatch = useDispatch();
@@ -27,7 +26,6 @@ const Login = ({ authService, onLogout }) => {
 
   useEffect(() => {
     authService.onAuthChange((user) => {
-      toast.success('대기실입니다!', { autoClose: 1000 });
       user && goToFoyer(user.uid);
     });
     navigate('/', {
