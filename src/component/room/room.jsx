@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Chatbox from '../chatbox/chatbox';
 import { useNavigate } from 'react-router-dom';
 import Button from '../button/button';
-import styles from './room.module.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCube, Pagination } from 'swiper';
 import Header from '../header/header';
 import { useDispatch, useSelector } from 'react-redux';
 import VideoBox from '../video_box/video_box';
@@ -13,6 +14,9 @@ import {
   updateCurrentTime,
   updateLocation,
 } from '../../reducers/userData';
+import styles from './room.module.css';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const Room = ({ messageRepository, videoRepository }) => {
   const roomId = useSelector((state) => state.userData.roomId);
@@ -23,6 +27,16 @@ const Room = ({ messageRepository, videoRepository }) => {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [onchat, setOnchat] = useState(true);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+  const handleResize = () => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
 
   const selectVideo = (video) => {
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -69,6 +83,12 @@ const Room = ({ messageRepository, videoRepository }) => {
       setSelectedVideo(playedVideo);
     }
   }, []);
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <section className={styles.room}>
@@ -76,23 +96,50 @@ const Room = ({ messageRepository, videoRepository }) => {
         <Header />
       </div>
       <Button name='Quit' onClick={quitRoom} />
-      <div className={styles.container}>
-        <div className={styles.videoplayer}>
-          <VideoBox
-            videos={videos}
-            selectedVideo={selectedVideo}
-            onVideoClick={selectVideo}
-            videoRepository={videoRepository}
-          />
+
+      {windowSize.width > 767 ? (
+        <div className={styles.container}>
+          <div className={styles.videoplayer}>
+            <VideoBox
+              videos={videos}
+              selectedVideo={selectedVideo}
+              onVideoClick={selectVideo}
+              videoRepository={videoRepository}
+            />
+          </div>
+          <div className={styles.chatbox}>
+            <Chatbox
+              messageRepository={messageRepository}
+              sendMessage={sendMessage}
+              messages={messages}
+            />
+          </div>
         </div>
-        <div className={styles.chatbox}>
-          <Chatbox
-            messageRepository={messageRepository}
-            sendMessage={sendMessage}
-            messages={messages}
-          />
+      ) : (
+        <div className={styles.container}>
+          <Swiper pagination={true} className={styles.mySwiper}>
+            <SwiperSlide>
+              <div className={styles.videoplayer}>
+                <VideoBox
+                  videos={videos}
+                  selectedVideo={selectedVideo}
+                  onVideoClick={selectVideo}
+                  videoRepository={videoRepository}
+                />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className={styles.chatbox}>
+                <Chatbox
+                  messageRepository={messageRepository}
+                  sendMessage={sendMessage}
+                  messages={messages}
+                />
+              </div>
+            </SwiperSlide>
+          </Swiper>
         </div>
-      </div>
+      )}
     </section>
   );
 };

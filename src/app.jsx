@@ -6,6 +6,7 @@ import Sidebar from './component/sidebar/sidebar';
 import Video from './component/video_page/video';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'swiper/css/bundle';
 
 function App({
   authService,

@@ -23,3 +23,34 @@
 .chatbox {
   width: 25%;
 }
+
+@media all and (max-width: 767px) {
+  .room {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .header {
+    display: none;
+  }
+  .videoplayer {
+    display: block;
+    width: 100vw;
+  }
+  .chatbox {
+    display: block;
+    width: 100vw;
+  }
+  .swiper {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+  }
+
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+  }
+}

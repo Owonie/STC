@@ -23,18 +23,36 @@
   height: 100%;
 }
 
-.description {
-  white-space: pre-wrap;
-}
 .title {
   margin: 2em 0 0.7em 0;
   padding-bottom: 2em;
+  padding-left: 1.5em;
   font-size: 1em;
   border-bottom: 1px solid STC_White;
 }
 .description {
+  white-space: pre-wrap;
   margin: 2em 0 0.7em 0;
   padding-bottom: 2em;
   font-size: 1em;
   border-bottom: 1px solid STC_White;
+}
+
+@media all and (max-width: 767px) {
+  .title {
+    margin: 1em 0 0em 0em;
+    padding-bottom: 0em;
+    padding-left: 1.5em;
+    font-size: 1em;
+    border-bottom: none;
+  }
+  .channelTitle {
+    padding-bottom: 1em;
+    padding-left: 1.5em;
+    font-size: 0.9em;
+    border-bottom: 1px solid STC_White;
+  }
+  .description {
+    display: none;
+  }
 }

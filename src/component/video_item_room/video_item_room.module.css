@@ -61,3 +61,16 @@
   margin: 0;
   font-size: 0.7rem;
 }
+
+@media all and (max-width: 767px) {
+  .video {
+    height: 5rem;
+  }
+  .metadata {
+    padding: 0.2em 0.4rem;
+  }
+  .title {
+    margin: 0;
+    font-size: 0.4rem;
+  }
+}
