@@ -38,7 +38,7 @@ const MessageInput = ({
     <div className={styles.inputMessage}>
       <form className={styles.inputForm} ref={formRef} action=''>
         <textarea
-          className={styles.input}
+          className={styles.textArea}
           ref={messageRef}
           row='5'
           onKeyPress={onKeyPress}

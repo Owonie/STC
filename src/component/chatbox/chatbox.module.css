@@ -36,3 +36,9 @@
 .messages::-webkit-scrollbar {
   display: none;
 }
+
+@media all and (max-width: 767px) {
+  .chatbox {
+    height: 90vh;
+  }
+}

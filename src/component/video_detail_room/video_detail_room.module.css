@@ -41,16 +41,13 @@
 @media all and (max-width: 767px) {
   .title {
     margin: 1em 0 0em 0em;
-    padding-bottom: 0em;
+    padding-bottom: 1.5em;
     padding-left: 1.5em;
     font-size: 1em;
-    border-bottom: none;
+    border-bottom: 1px solid STC_White;
   }
   .channelTitle {
-    padding-bottom: 1em;
-    padding-left: 1.5em;
-    font-size: 0.9em;
-    border-bottom: 1px solid STC_White;
+    display: none;
   }
   .description {
     display: none;
