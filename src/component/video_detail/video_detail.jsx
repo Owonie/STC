@@ -3,9 +3,9 @@ import styles from './video_detail.module.css';
 
 const VideoDetail = ({ video, video: { snippet } }) => {
   return (
-    <section className={[styles.detail]}>
+    <section className={styles.detail}>
       <iframe
-        className={[styles.video]}
+        className={styles.video}
         type='text/html'
         width='100%'
         height='500px'

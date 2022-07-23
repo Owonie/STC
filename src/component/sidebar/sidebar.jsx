@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { updateInRoom } from '../../reducers/userData';
+import { updateInRoom, updateLocation } from '../../reducers/userData';
 import styles from './sidebar.module.css';
 
 const Sidebar = (props) => {
   const navigate = useNavigate();
   const roomId = useSelector((state) => state.userData.roomId);
   const inRoom = useSelector((state) => state.userData.inRoom);
+  const location = useSelector((state) => state.userData.location);
   const dispatch = useDispatch();
+
   const onClick = (event) => {
     event.preventDefault();
     if (roomId == null) {
@@ -21,17 +23,16 @@ const Sidebar = (props) => {
       // 이미 입장한 방이 있을 경우.
       if (event.target.value != 'room') {
         dispatch(updateInRoom(false));
+        dispatch(updateLocation(event.target.value));
         navigate(('/', event.target.value), {
           replace: true,
         });
-      } else {
-        // 다시 방으로 들어갈 때
-        if (inRoom == false) {
-          dispatch(updateInRoom(true));
-          navigate(('/', event.target.value), {
-            replace: true,
-          });
-        }
+      } else if (inRoom == false) {
+        dispatch(updateInRoom(true));
+        dispatch(updateLocation('room'));
+        navigate(('/', event.target.value), {
+          replace: true,
+        });
       }
     }
   };
@@ -41,7 +42,9 @@ const Sidebar = (props) => {
       <ul className={styles.lists}>
         <li className={styles.list}>
           <button
-            className={`${styles.button} ${styles.btn_foyer}`}
+            className={`${styles.button} ${
+              location == '' ? styles.clicked : ''
+            }`}
             value=''
             onClick={onClick}
           >
@@ -50,7 +53,9 @@ const Sidebar = (props) => {
         </li>
         <li className={styles.list}>
           <button
-            className={`${styles.button} ${styles.btn_room}`}
+            className={`${styles.button} ${
+              location == 'room' ? styles.clicked : ''
+            }`}
             value='room'
             onClick={onClick}
           >
@@ -59,7 +64,9 @@ const Sidebar = (props) => {
         </li>
         <li className={styles.list}>
           <button
-            className={`${styles.button} ${styles.btn_video}`}
+            className={`${styles.button} ${
+              location == 'video' ? styles.clicked : ''
+            }`}
             value='video'
             onClick={onClick}
           >
@@ -68,7 +75,9 @@ const Sidebar = (props) => {
         </li>
         <li className={styles.list}>
           <button
-            className={`${styles.button} ${styles.btn_settings}`}
+            className={`${styles.button} ${
+              location == 'settings' ? styles.clicked : ''
+            }`}
             value='settings'
             onClick={onClick}
           >

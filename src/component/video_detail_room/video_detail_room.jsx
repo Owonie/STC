@@ -40,7 +40,7 @@ const VideoDetailInRoom = ({ video, video: { snippet } }) => {
         <div className={styles.player}>
           <Youtube
             videoId={video.id}
-            className={[styles.video]}
+            className={styles.video}
             opts={{
               width: '100%',
               height: '100%',

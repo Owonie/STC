@@ -29,7 +29,7 @@
   height: 80%;
   width: 80%;
   color: STC_White;
-  opacity: 78%;
+  opacity: 30%;
   background-color: STC_MaastrichtBlue;
   font-size: 3em;
   border: none;
@@ -40,4 +40,7 @@
 button path,
 button svg {
   pointer-events: none;
+}
+.clicked {
+  opacity: 100%;
 }

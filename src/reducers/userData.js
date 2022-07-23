@@ -10,8 +10,8 @@ export const userDataSlice = createSlice({
     currentTime: null,
     inRoom: false,
     playedVideo: null,
+    location: null,
   },
-
   reducers: {
     updateUserId: (state, action) => {
       state.userId = action.payload;
@@ -34,6 +34,9 @@ export const userDataSlice = createSlice({
     updatePlayedVideo: (state, action) => {
       state.playedVideo = action.payload;
     },
+    updateLocation: (state, action) => {
+      state.location = action.payload;
+    },
   },
 });
 
@@ -45,6 +48,7 @@ export const {
   updateCurrentTime,
   updateInRoom,
   updatePlayedVideo,
+  updateLocation,
 } = userDataSlice.actions;
 
 export default userDataSlice.reducer;

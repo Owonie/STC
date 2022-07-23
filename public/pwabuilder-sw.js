@@ -25,11 +25,6 @@ if (workbox.navigationPreload.isSupported()) {
 }
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.url.endWith('/index.html')) {
-    const resp = Response.redirect('/', 301);
-    event.respondWith(resp);
-  }
-
   if (event.request.mode === 'navigate') {
     event.respondWith(
       (async () => {

@@ -11,6 +11,7 @@ import {
   updateInRoom,
   updatePlayedVideo,
   updateCurrentTime,
+  updateLocation,
 } from '../../reducers/userData';
 
 const Room = ({ messageRepository, videoRepository }) => {
@@ -34,6 +35,7 @@ const Room = ({ messageRepository, videoRepository }) => {
     dispatch(updateInRoom(false));
     dispatch(updateCurrentTime(null));
     dispatch(updatePlayedVideo(null));
+    dispatch(updateLocation('foyer'));
     setOnchat(false);
     navigate('/', {
       replace: true,
@@ -62,6 +64,7 @@ const Room = ({ messageRepository, videoRepository }) => {
   }, [videoRepository]);
 
   useEffect(() => {
+    dispatch(updateLocation(`room`));
     if (playedVideo != null) {
       setSelectedVideo(playedVideo);
     }

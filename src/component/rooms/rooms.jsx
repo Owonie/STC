@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import AddRoomForm from '../add_room_form/add_room_form';
 import JoinRoomForm from '../join_room_form/join_room_form';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateRoomId, updateInRoom } from '../../reducers/userData';
+import {
+  updateRoomId,
+  updateInRoom,
+  updateLocation,
+} from '../../reducers/userData';
 import { toast } from 'react-toastify';
 import styles from './rooms.module.css';
 
@@ -41,6 +45,7 @@ const Rooms = ({ messageRepository, roomRepository }) => {
       const event = data;
       if (event == true) {
         dispatch(updateRoomId(room));
+        dispatch(updateLocation('room'));
         dispatch(updateInRoom(true));
         navigate('/room');
       }

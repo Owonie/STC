@@ -2,11 +2,12 @@ import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 import Rooms from '../rooms/rooms';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   updateDisplayName,
   updateUserId,
   updatePhotoURL,
+  updateLocation,
 } from '../../reducers/userData';
 import Login from '../login/login';
 
@@ -34,12 +35,14 @@ const Foyer = ({
       }
     });
   }, [authService]);
+  useEffect(() => {
+    dispatch(updateLocation(``));
+  }, []);
 
   return (
     <div>
       <Header authService={authService} />
       <Login onLogout={onLogout} authService={authService} />
-
       <Rooms
         authService={authService}
         roomRepository={roomRepository}

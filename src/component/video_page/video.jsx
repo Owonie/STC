@@ -3,13 +3,13 @@ import styles from './video.module.css';
 import SearchHeader from '../search_header/search_header';
 import VideoList from '../video_list/video_list';
 import VideoDetail from '../video_detail/video_detail';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { updateLocation } from '../../reducers/userData';
 function Video({ videoService, videoRepository }) {
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const roomId = useSelector((state) => state.userData.roomId);
-
+  const dispatch = useDispatch();
   const selectVideo = (video) => {
     window.scrollTo({ top: 0, behavior: 'auto' });
     setSelectedVideo(video);
@@ -32,7 +32,9 @@ function Video({ videoService, videoRepository }) {
       .mostPopular() //
       .then((videos) => setVideos(videos));
   }, [videoService]);
-
+  useEffect(() => {
+    dispatch(updateLocation(`video`));
+  }, []);
   return (
     <div className={styles.app}>
       <SearchHeader onSearch={search} />
