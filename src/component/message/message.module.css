@@ -3,7 +3,7 @@
 .messages {
   width: 100%;
   display: flex;
-  margin: 1em 0;
+  margin: 0;
 }
 .myMessages {
   width: 100%;
@@ -12,7 +12,7 @@
   flex-direction: row-reverse;
 }
 .message {
-  margin: 0 1em;
+  margin: 0.3em;
   padding: 0 0.5em;
   display: inline-flex;
   flex-direction: column;
@@ -25,30 +25,40 @@
 .userId {
   margin: 0 0;
   margin-right: auto;
-  font-size: 10px;
+  font-size: 15px;
+  color: STC_Grey;
 }
 .myUserId {
   margin: 0 0;
   margin-left: auto;
-  font-size: 10px;
+  font-size: 15px;
+  color: STC_Grey;
 }
 .content {
   display: inline-block;
-  max-width: 15em;
+  max-width: 21em;
   padding: 0.6em 0.8em;
   border-radius: 0.3em;
   margin-right: auto;
   margin-top: 0.5em;
   background-color: STC_PoliceBlue;
   word-break: break-all;
+  font-size: 1.2em;
+  font-weight: 350;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: white;
 }
 .myContent {
   display: inline-block;
-  max-width: 15em;
+  max-width: 21em;
   padding: 0.6em 0.8em;
   border-radius: 0.3em;
   margin-left: 0.5em;
   margin-top: 0.5em;
   background-color: STC_Peach;
   word-break: break-all;
+  font-size: 1.2em;
+  font-weight: 450;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: black;
 }

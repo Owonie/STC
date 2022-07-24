@@ -1,6 +1,8 @@
 @value STC_Black: #393232;
 @value STC_White: #F2F2F2;
 @value STC_Grey: #4D4545;
+@value STC_LightGrey: rgba(249,249,249,1);
+@value STC_DarkGrey: #737373;
 @value STC_YankeesBlue: #152642;
 @value STC_PoliceBlue: #2F4562;
 @value STC_MaastrichtBlue: #081B33;

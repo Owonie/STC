@@ -44,9 +44,6 @@ const MessageInput = ({
           onKeyPress={onKeyPress}
         ></textarea>
       </form>
-      <button className={styles.button} onClick={onSubmit}>
-        <i className='fa-solid fa-paper-plane fa-2x'></i>
-      </button>
     </div>
   );
 };

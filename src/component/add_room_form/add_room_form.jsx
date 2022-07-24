@@ -25,11 +25,11 @@ const AddRoomForm = memo(({ onAdd }) => {
 
   return (
     <div>
-      <h1>this is rooms!</h1>
+      <h1>방 만들기</h1>
       <form ref={formRef} className={styles.form}>
         <input ref={roomIdRef} type='text' onKeyPress={onKeyPress} />
       </form>
-      <Button name='create' onClick={onSubmit} />
+      <Button name='생성' onClick={onSubmit} />
     </div>
   );
 });

@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column-reverse;
   min-width: 100%;
-  height: 85vh;
+  height: 90vh;
   padding: 0 1em;
   list-style: none;
   overflow-y: scroll;
@@ -28,9 +28,9 @@
 @media all and (max-width: 767px) {
   .videoList {
     position: absolute;
-    left: 8vw;
-    width: 80vw;
-    height: 58vh;
+    left: 5vw;
+    width: 90vw;
+    height: 60vh;
   }
   .container {
     width: 100%;

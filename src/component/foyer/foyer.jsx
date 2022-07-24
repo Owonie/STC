@@ -4,6 +4,10 @@ import Header from '../header/header';
 import Rooms from '../rooms/rooms';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  updateRoomId,
+  updateInRoom,
+  updateCurrentTime,
+  updatePlayedVideo,
   updateDisplayName,
   updateUserId,
   updatePhotoURL,
@@ -11,6 +15,7 @@ import {
 } from '../../reducers/userData';
 import Login from '../login/login';
 import styles from './foyer.module.css';
+import Button from '../button/button';
 
 const Foyer = ({
   authService,
@@ -22,7 +27,16 @@ const Foyer = ({
   const dispatch = useDispatch();
   const photoURL = useSelector((state) => state.userData.photoURL);
   const displayName = useSelector((state) => state.userData.displayName);
-
+  const quitRoom = () => {
+    dispatch(updateRoomId(null));
+    dispatch(updateInRoom(false));
+    dispatch(updateCurrentTime(null));
+    dispatch(updatePlayedVideo(null));
+    dispatch(updateLocation('foyer'));
+    navigate('/', {
+      replace: true,
+    });
+  };
   const onLogout = useCallback(() => {
     authService.logout();
   }, [authService]);
@@ -57,6 +71,9 @@ const Foyer = ({
         </div>
         <div className={styles.login}>
           <Login onLogout={onLogout} authService={authService} />
+        </div>
+        <div className={styles.quitRoom}>
+          <Button name='Quit' onClick={quitRoom} />
         </div>
         <div className={styles.rooms}>
           <Rooms

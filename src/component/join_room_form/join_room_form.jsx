@@ -23,11 +23,11 @@ const JoinRoomForm = ({ joinRoom }) => {
 
   return (
     <div>
-      <h1>Join us!</h1>
+      <h1>방 입장하기</h1>
       <form ref={formRef} className={styles.form}>
         <input ref={roomNameRef} type='text' onKeyPress={onKeyPress} />
       </form>
-      <Button name='join' onClick={onSubmit} />
+      <Button name='입장' onClick={onSubmit} />
     </div>
   );
 };

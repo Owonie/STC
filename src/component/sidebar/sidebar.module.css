@@ -1,4 +1,4 @@
-@value STC_Black,STC_MaastrichtBlue,STC_White,STC_Grey from '../../common/colors.css';
+@value STC_Black,STC_LightGrey,STC_MaastrichtBlue,STC_White,STC_Grey from '../../common/colors.css';
 
 .sidebar {
   height: 100%;
@@ -22,15 +22,14 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  background-color: STC_MaastrichtBlue;
-  color: STC_White;
+  background-color: STC_LightGrey;
 }
 .button {
   height: 80%;
   width: 80%;
-  color: STC_White;
+  color: black;
   opacity: 30%;
-  background-color: STC_MaastrichtBlue;
+  background-color: STC_LightGrey;
   font-size: 3em;
   border: none;
 }
@@ -55,7 +54,7 @@ button svg {
     flex-direction: row;
     list-style: none;
     justify-content: space-between;
-    border-top: 1.5px solid STC_Grey;
+    border-top: 2px solid #ccc;
     z-index: 2;
   }
   .button {

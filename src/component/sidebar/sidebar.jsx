@@ -21,15 +21,16 @@ const Sidebar = (props) => {
     }
     if (roomId != null) {
       // 이미 입장한 방이 있을 경우.
-      if (event.target.value != 'room') {
-        dispatch(updateInRoom(false));
+      if (event.target.value == 'room') {
+        dispatch(updateInRoom(true));
         dispatch(updateLocation(event.target.value));
         navigate(('/', event.target.value), {
           replace: true,
         });
-      } else if (inRoom == false) {
-        dispatch(updateInRoom(true));
-        dispatch(updateLocation('room'));
+      }
+      if (event.target.value != 'room') {
+        dispatch(updateInRoom(false));
+        dispatch(updateLocation(event.target.value));
         navigate(('/', event.target.value), {
           replace: true,
         });

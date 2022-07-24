@@ -3,7 +3,6 @@ import Chatbox from '../chatbox/chatbox';
 import { useNavigate } from 'react-router-dom';
 import Button from '../button/button';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCube, Pagination } from 'swiper';
 import Header from '../header/header';
 import { useDispatch, useSelector } from 'react-redux';
 import VideoBox from '../video_box/video_box';
@@ -20,13 +19,13 @@ import 'swiper/css/pagination';
 
 const Room = ({ messageRepository, videoRepository }) => {
   const roomId = useSelector((state) => state.userData.roomId);
+  const inRoom = useSelector((state) => state.userData.inRoom);
   const playedVideo = useSelector((state) => state.userData.playedVideo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [messages, setMessages] = useState({});
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const [onchat, setOnchat] = useState(true);
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -50,7 +49,6 @@ const Room = ({ messageRepository, videoRepository }) => {
     dispatch(updateCurrentTime(null));
     dispatch(updatePlayedVideo(null));
     dispatch(updateLocation('foyer'));
-    setOnchat(false);
     navigate('/', {
       replace: true,
     });
@@ -61,20 +59,22 @@ const Room = ({ messageRepository, videoRepository }) => {
   };
 
   useEffect(() => {
-    if (onchat == false) {
+    if (inRoom == false) {
       return;
     }
     const stopSync = messageRepository.syncMessage(roomId, (docs) => {
       setMessages(docs);
     });
     return () => stopSync();
-  }, [onchat, messageRepository]);
+  }, [inRoom, messageRepository]);
 
   useEffect(() => {
     const stopSync = videoRepository.syncVideoList(roomId, (docs) => {
       setVideos(docs);
     });
-    return () => stopSync();
+    return () => {
+      stopSync();
+    };
   }, [videoRepository]);
 
   useEffect(() => {
@@ -95,8 +95,6 @@ const Room = ({ messageRepository, videoRepository }) => {
       <div className={styles.header}>
         <Header />
       </div>
-      <Button name='Quit' onClick={quitRoom} />
-
       {windowSize.width > 767 ? (
         <div className={styles.container}>
           <div className={styles.videoplayer}>

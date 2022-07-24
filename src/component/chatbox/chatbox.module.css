@@ -1,13 +1,13 @@
-@value STC_YankeesBlue from '../../common/colors.css';
+@value STC_YankeesBlue,STC_White from '../../common/colors.css';
 
 .chatbox {
   text-align: center;
   min-width: 20rem;
-  height: 95%;
+  height: 100%;
   margin: 0.5em;
   overflow-y: auto;
   border-radius: 1em;
-  background-color: STC_YankeesBlue;
+  background-color: STC_White;
 }
 .container {
   display: flex;
@@ -29,7 +29,7 @@
   overflow-y: scroll;
   width: 100%;
   height: 75%;
-  padding: 0.5em 2em;
+  padding: 0em 2em;
   flex-direction: column;
   opacity: 87%;
 }
@@ -39,6 +39,10 @@
 
 @media all and (max-width: 767px) {
   .chatbox {
-    height: 90vh;
+    height: 95vh;
+    margin: 0;
+  }
+  .messages {
+    padding: 0em 0.6em;
   }
 }
