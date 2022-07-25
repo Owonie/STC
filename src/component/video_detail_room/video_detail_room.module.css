@@ -1,4 +1,4 @@
-@value STC_White from '../../common/colors.css';
+@value STC_White, STC_Grey from '../../common/colors.css';
 
 .detail {
   width: 100%;
@@ -27,7 +27,7 @@
   margin: 2em 0 0.7em 0;
   padding: 0 2em 2em 2em;
   font-size: 1em;
-  border-bottom: 1px solid STC_DarkGrey;
+  border-bottom: 2px solid #ccc;
   font-size: 1.5em;
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: #333333;

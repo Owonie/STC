@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Chatbox from '../chatbox/chatbox';
-import { useNavigate } from 'react-router-dom';
-import Button from '../button/button';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Header from '../header/header';
 import { useDispatch, useSelector } from 'react-redux';
 import VideoBox from '../video_box/video_box';
-import {
-  updateRoomId,
-  updateInRoom,
-  updatePlayedVideo,
-  updateCurrentTime,
-  updateLocation,
-} from '../../reducers/userData';
+import { updatePlayedVideo, updateLocation } from '../../reducers/userData';
 import styles from './room.module.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -22,7 +14,6 @@ const Room = ({ messageRepository, videoRepository }) => {
   const inRoom = useSelector((state) => state.userData.inRoom);
   const playedVideo = useSelector((state) => state.userData.playedVideo);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [messages, setMessages] = useState({});
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -41,17 +32,6 @@ const Room = ({ messageRepository, videoRepository }) => {
     window.scrollTo({ top: 0, behavior: 'auto' });
     setSelectedVideo(video);
     dispatch(updatePlayedVideo(video));
-  };
-
-  const quitRoom = () => {
-    dispatch(updateRoomId(null));
-    dispatch(updateInRoom(false));
-    dispatch(updateCurrentTime(null));
-    dispatch(updatePlayedVideo(null));
-    dispatch(updateLocation('foyer'));
-    navigate('/', {
-      replace: true,
-    });
   };
 
   const sendMessage = (message) => {
