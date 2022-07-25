@@ -16,3 +16,6 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.videos::-webkit-scrollbar {
+  display: none;
+}

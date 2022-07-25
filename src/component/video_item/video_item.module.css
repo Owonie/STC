@@ -1,6 +1,11 @@
+@value STC_Grey from '../../common/colors.css';
+
 .container {
+  display: flex;
+  justify-content: center;
   width: 50%;
-  padding: 0.2em;
+  height: 50%;
+  padding: 0em;
 }
 
 .container.grid {
@@ -20,45 +25,85 @@
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  margin: 2em;
   border: 1px solid lightgray;
   box-shadow: 3px 3px 5px 0px rgba(191, 191, 191, 0.53);
-  border-radius: 0.5em;
   cursor: pointer;
   transition: transform 160ms ease-in;
 }
 
 .video:hover {
-  transform: scale(1.05);
+  transform: scale(1.24);
+  z-index: 2;
 }
 
 .thumbnail {
-  width: 40%;
-  height: 100%;
-  border-radius: 0.5em;
+  width: 100%;
+  height: 43%;
 }
 
 .metadata {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  margin-left: 0.2em;
+  padding: 0.2em;
+  font-family: 'Noto Sans KR', sans-serif;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.metadata::-webkit-scrollbar {
+  display: none;
 }
 
-.title,
-.channel {
-  margin: 1em 2em;
-  font-size: 1.2rem;
+.title {
+  margin: 0.5em;
+  padding: 0.5em;
+  font-size: 0.9rem;
 }
 
 .channel {
   margin: 0 3em;
   font-size: 0.8rem;
+  color: STC_Grey;
 }
 
 .addbutton {
   margin: 1em 3em;
-  width: 5rem;
+  width: 4rem;
   height: 3rem;
+}
+
+@media all and (min-width: 1131px) {
+  .container.grid {
+    width: 25%;
+  }
+  .video {
+    width: 18vw;
+    height: 24vw;
+  }
+}
+
+@media all and (min-width: 761px) and (max-width: 1130px) {
+  .container.grid {
+    width: 33%;
+  }
+  .video {
+    width: 24vw;
+    height: 32vw;
+  }
+}
+
+@media all and (max-width: 760px) {
+  .container.grid {
+    width: 50%;
+  }
+  .video {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
 }

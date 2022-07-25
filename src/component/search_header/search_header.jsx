@@ -19,22 +19,24 @@ const SearchHeader = memo(({ onSearch }) => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <button className={styles.title}>STC</button>
+        <button className={styles.title}>Split-Then-Combine</button>
       </div>
-      <input
-        ref={inputRef}
-        className={styles.input}
-        type='search'
-        placeholder='Search for video'
-        onKeyPress={onKeyPress}
-      />
-      <button className={styles.button} type='submit' onClick={onClick}>
-        <img
-          className={styles.buttonimg}
-          src='/images/research1.png'
-          alt='search'
+      <div className={styles.search}>
+        <input
+          ref={inputRef}
+          className={styles.input}
+          type='search'
+          placeholder='검색어를 입력해주세요!'
+          onKeyPress={onKeyPress}
         />
-      </button>
+        <button className={styles.button} type='submit' onClick={onClick}>
+          <img
+            className={styles.buttonimg}
+            src='/images/research1.png'
+            alt='search'
+          />
+        </button>
+      </div>
     </header>
   );
 });

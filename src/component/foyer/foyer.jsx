@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../header/header';
 import Rooms from '../rooms/rooms';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -58,7 +57,6 @@ const Foyer = ({
 
   return (
     <div className={styles.foyer}>
-      <Header authService={authService} />
       <div className={styles.container}>
         <div className={styles.profile}>
           <img

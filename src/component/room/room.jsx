@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Chatbox from '../chatbox/chatbox';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Header from '../header/header';
 import { useDispatch, useSelector } from 'react-redux';
 import VideoBox from '../video_box/video_box';
 import { updatePlayedVideo, updateLocation } from '../../reducers/userData';
@@ -72,9 +71,6 @@ const Room = ({ messageRepository, videoRepository }) => {
 
   return (
     <section className={styles.room}>
-      <div className={styles.header}>
-        <Header />
-      </div>
       {windowSize.width > 767 ? (
         <div className={styles.container}>
           <div className={styles.videoplayer}>
