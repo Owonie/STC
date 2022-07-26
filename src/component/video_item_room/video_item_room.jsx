@@ -6,8 +6,8 @@ const VideoItemInRoom = memo(
   ({ video, video: { snippet }, onVideoClick, display }) => {
     const playedVideo = useSelector((state) => state.userData.playedVideo);
     const displayType = display === 'list' ? styles.list : styles.grid;
-    const selected = video.id === playedVideo.id ? styles.selected : '';
-
+    const selected =
+      playedVideo && video.id == playedVideo.id ? styles.selected : '';
     return (
       <li className={`${styles.container} ${displayType}`}>
         <div className={`${styles.video} ${selected}`}>
