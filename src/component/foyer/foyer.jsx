@@ -26,6 +26,7 @@ const Foyer = ({
   const dispatch = useDispatch();
   const photoURL = useSelector((state) => state.userData.photoURL);
   const displayName = useSelector((state) => state.userData.displayName);
+  const roomId = useSelector((state) => state.userData.roomId);
   const quitRoom = () => {
     dispatch(updateRoomId(null));
     dispatch(updateInRoom(false));
@@ -70,9 +71,15 @@ const Foyer = ({
         <div className={styles.login}>
           <Login onLogout={onLogout} authService={authService} />
         </div>
-        <div className={styles.quitRoom}>
-          <Button name='Quit' onClick={quitRoom} />
-        </div>
+
+        {roomId != null && (
+          <div className={styles.logout}>
+            <div className={styles.roomId}>현재 속해있는 방: {roomId}</div>
+            <div className={styles.quitRoom}>
+              <Button name='방에서 나가기' onClick={quitRoom} />
+            </div>
+          </div>
+        )}
         <div className={styles.rooms}>
           <Rooms
             authService={authService}
