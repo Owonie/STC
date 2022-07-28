@@ -2,10 +2,13 @@ import React, { memo, useRef } from 'react';
 import Button from '../button/button';
 import styles from './add_room_form.module.css';
 
-const AddRoomForm = memo(({ onAdd }) => {
-  const roomIdRef = useRef();
-  const formRef = useRef();
-  const onSubmit = (event) => {
+type AddRoomFormProps = {
+  onAdd: (room: { roomId: string }) => void;
+};
+const AddRoomForm = memo(({ onAdd }: AddRoomFormProps) => {
+  const roomIdRef = useRef<HTMLInputElement>();
+  const formRef = useRef<HTMLFormElement>();
+  const onSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const room = {
       roomId: roomIdRef.current.value,
@@ -13,7 +16,7 @@ const AddRoomForm = memo(({ onAdd }) => {
     formRef.current.reset();
     onAdd(room);
   };
-  const onKeyPress = (event) => {
+  const onKeyPress = (event: React.KeyboardEvent) => {
     if (event.key == 'Enter') {
       if (roomIdRef.current.value.trim() == '') {
         formRef.current.reset();
