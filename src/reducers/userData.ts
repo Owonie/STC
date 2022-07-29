@@ -5,7 +5,7 @@ type userDataType = {
   displayName: string;
   roomId: string;
   photoURL: string;
-  currentTime: string;
+  currentTime: number;
   inRoom: boolean;
   playedVideo: string;
   location: string;
