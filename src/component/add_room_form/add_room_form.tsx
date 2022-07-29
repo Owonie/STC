@@ -3,16 +3,14 @@ import Button from '../button/button';
 import styles from './add_room_form.module.css';
 
 type AddRoomFormProps = {
-  onAdd: (room: { roomId: string }) => void;
+  onAdd: (room: string) => void;
 };
 const AddRoomForm = memo(({ onAdd }: AddRoomFormProps) => {
   const roomIdRef = useRef<HTMLInputElement>();
   const formRef = useRef<HTMLFormElement>();
   const onSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const room = {
-      roomId: roomIdRef.current.value,
-    };
+    const room = roomIdRef.current.value;
     formRef.current.reset();
     onAdd(room);
   };

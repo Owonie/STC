@@ -1,17 +1,20 @@
-import { React, useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import Button from '../button/button';
 import styles from './join_room_form.module.css';
 
-const JoinRoomForm = ({ joinRoom }) => {
-  const formRef = useRef();
-  const roomNameRef = useRef();
-  const onSubmit = (event) => {
+type JoinRoomFormProps = {
+  joinRoom: (room: string) => void;
+};
+const JoinRoomForm = memo(({ joinRoom }: JoinRoomFormProps) => {
+  const formRef = useRef<HTMLFormElement>();
+  const roomNameRef = useRef<HTMLInputElement>();
+  const onSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const room = roomNameRef.current.value;
     formRef.current.reset();
     joinRoom(room);
   };
-  const onKeyPress = (event) => {
+  const onKeyPress = (event: React.KeyboardEvent) => {
     if (event.key == 'Enter') {
       if (roomNameRef.current.value.trim() == '') {
         formRef.current.reset();
@@ -30,5 +33,5 @@ const JoinRoomForm = ({ joinRoom }) => {
       <Button name='입장' onClick={onSubmit} />
     </div>
   );
-};
+});
 export default JoinRoomForm;
