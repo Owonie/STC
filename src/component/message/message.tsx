@@ -1,7 +1,18 @@
 import React from 'react';
 import styles from './message.module.css';
 
-const Message = ({ message, userName }) => {
+type MessageProps = {
+  message: MessageType;
+  userName: string;
+};
+type MessageType = {
+  content: string;
+  userId: string;
+  displayName: string;
+  photoURL: string;
+};
+
+const Message = ({ message, userName }: MessageProps) => {
   const { content, userId, displayName, photoURL } = message;
   return (
     <li className={userId == userName ? styles.myMessages : styles.messages}>
@@ -15,10 +26,7 @@ const Message = ({ message, userName }) => {
         <h1 className={userId == userName ? styles.myUserId : styles.userId}>
           {displayName}
         </h1>
-        <p
-          align='left'
-          className={userId == userName ? styles.myContent : styles.content}
-        >
+        <p className={userId == userName ? styles.myContent : styles.content}>
           {content}
         </p>
       </div>

@@ -1,4 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+type userDataType = {
+  userId: string;
+  displayName: string;
+  roomId: string;
+  photoURL: string;
+  currentTime: string;
+  inRoom: boolean;
+  playedVideo: string;
+  location: string;
+};
 
 export const userDataSlice = createSlice({
   name: 'userData',
@@ -13,16 +24,16 @@ export const userDataSlice = createSlice({
     location: null,
   },
   reducers: {
-    updateUserId: (state, action) => {
+    updateUserId: (state, action: PayloadAction<string>) => {
       state.userId = action.payload;
     },
-    updateDisplayName: (state, action) => {
+    updateDisplayName: (state, action: PayloadAction<string>) => {
       state.displayName = action.payload;
     },
-    updateRoomId: (state, action) => {
+    updateRoomId: (state, action: PayloadAction<string>) => {
       state.roomId = action.payload;
     },
-    updatePhotoURL: (state, action) => {
+    updatePhotoURL: (state, action: PayloadAction<string>) => {
       state.photoURL = action.payload;
     },
     updateCurrentTime: (state, action) => {
@@ -31,10 +42,10 @@ export const userDataSlice = createSlice({
     updateInRoom: (state, action) => {
       state.inRoom = action.payload;
     },
-    updatePlayedVideo: (state, action) => {
+    updatePlayedVideo: (state, action: PayloadAction<string>) => {
       state.playedVideo = action.payload;
     },
-    updateLocation: (state, action) => {
+    updateLocation: (state, action: PayloadAction<string>) => {
       state.location = action.payload;
     },
   },
