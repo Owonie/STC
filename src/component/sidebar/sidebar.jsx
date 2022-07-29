@@ -8,7 +8,6 @@ import styles from './sidebar.module.css';
 const Sidebar = (props) => {
   const navigate = useNavigate();
   const roomId = useSelector((state) => state.userData.roomId);
-  const inRoom = useSelector((state) => state.userData.inRoom);
   const location = useSelector((state) => state.userData.location);
   const dispatch = useDispatch();
 
@@ -20,7 +19,6 @@ const Sidebar = (props) => {
       }
     }
     if (roomId != null) {
-      // 이미 입장한 방이 있을 경우.
       if (event.target.value == 'room') {
         dispatch(updateInRoom(true));
         dispatch(updateLocation(event.target.value));
