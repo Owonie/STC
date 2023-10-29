@@ -125,4 +125,4 @@
      * 테스트 코드 작성
      * 데이터 관리 최적화 ( 필요시 서버를 직접구축 )
      * 타입스크립트 적용
-     * SEO 최적화 ( Pre-rendering / Nest.js / Gastby.js )
+     * SEO 최적화 ( Pre-rendering )
