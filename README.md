@@ -1,6 +1,8 @@
 # STC_Project ( Share videos with Chatting )
 
-> _1인 프로젝트  - <주인장,또왔네>_ 
+> _1인 프로젝트  - <주인장,또왔네>_
+
+> STC_V2 (신버전) Repo: [https://github.com/Owonie/STC_V2]
 
 ## Description
 
